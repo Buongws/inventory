@@ -28,6 +28,7 @@ import {
   CreateMovementDto,
   InventoryErrorDto,
   InventoryPageDto,
+  InventoryListQueryDto,
   HistoryListDto,
   NoInventoryQueryDto,
   StockEnvelopeDto,
@@ -115,9 +116,9 @@ export class InventoryController {
   @ApiOkResponse({
     type: StockListDto,
     description:
-      "All active/inactive products, including logical zero; product ID ascending",
+      "Server-filtered name/SKU, status and Product.createdAt (UTC+7 whole days); shared filtered total; page1/limit10 by default; logical zero and product ID ascending",
   })
-  list(@Query() query: InventoryPageDto, @Req() request: Request) {
+  list(@Query() query: InventoryListQueryDto, @Req() request: Request) {
     this.validateReadBody(request);
     return this.inventory.listStock(query);
   }

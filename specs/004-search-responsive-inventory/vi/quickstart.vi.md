@@ -12,15 +12,17 @@ Login admin hiện có, dùng Product/status/timestamp sẵn. Kiểm tra biên n
 
 ## Smoke ngắn
 
-1. Mở Inventory: GET đầu1/10, guard/drawer hiện có. Ghi query/rows/count.
+1. Mở Inventory: GET đầu1/10, guard/trang details hiện có. Ghi query/rows/count.
 2. Edit name/SKU chưa submit không GET; submit mixed-case/whitespace name rồi SKU, đối chiếu trim/search toàn catalog. `%`/`_` literal khi kiểm tra.
 3. ACTIVE/INACTIVE/All và kết hợp text/status/date; đối chiếu products/total có sẵn.
-4. From-only/To-only/cùng ngày/no date theo UTC+7 [contract](contracts/inventory-api.vi.md). Range đảo báo FE error/không GET. Picker chỉ chọn lịch nên không nhập ngày vô thực; độc lập gửi GET read-only sai qua client đã auth để xác nhận backend400, ví dụ2026-02-30/timestamp/range đảo. Không coi đó là chứng minh UI nhập ngày sai.
+4. From-only/To-only/cùng ngày/no date theo UTC+7 [contract](contracts/inventory-api.vi.md). Ghi ba check riêng: picker FE ngăn nhập/chọn ngày sai; Form FE báo range đảo/không GET; query trực tiếp BE đã auth/chỉ đọc ngày thật-range sai trả400, ví dụ2026-02-30/timestamp/range đảo. HTTP400 không là FE PASS. Không wrapper/fault framework để tạo nhánh nhập sai nhân tạo.
 5. Đổi page khi draft chưa submit: giữ applied; size20/50/100→page1; reset xóa filter/page1/giữ size/reload. No-match và GET page ngoài phạm vi: items rỗng/total đúng/không clamp.
 6. Quan sát loading/error cơ bản/retry nếu gặp tự nhiên, không fault. Có thể browser network throttling rồi submit hai filter/page, kiểm tra kết quả cuối đúng identity; ghi request đã quan sát, không claim race đầy đủ. Không quan sát được thì NOT RUN.
-7. Drawer stock/history/actions dùng được; tránh movement write dev. History vẫn default20. Không tái chứng nhận auth/idempotency/flow nâng cao.
-8.1920×1080/sidebar mở/10/drawer đóng: screenshot/document scroll height thật.768×1024/390×844: sidebar reopening/filter wrap/table scroll/actions/pagination/drawer.20+ được cuộn dọc.
+7. Details page stock/history/actions dùng được; tránh movement write dev. History vẫn default20. Không tái chứng nhận auth/idempotency/flow nâng cao.
+8.1920×1080/sidebar mở/10/đang ở danh sách: screenshot/document scroll height thật.768×1024/390×844: sidebar reopening/filter wrap/table scroll/actions/pagination/trang details.20+ được cuộn dọc.
 
 ## Bằng chứng và giới hạn
 
 Mỗi check ghi ngày/URL dev/viewport/thao tác/request-response đã che bí mật/UI thật. Gates riêng. Source review chỉ hỗ trợ thiết kế; HTTP không là UI PASS. Dữ liệu sẵn có thể chưa đủ kiểm biên ngày/status. Không test mới/proxy/fault matrix/môi trường; không mutation/replay và không suy luận browser abort là backend rollback.
+
+Smoke thiếu bằng chứng giữ NOT RUN/task verification pending, không chặn implementation responsive/gates độc lập. Bàn giao liệt kê từng check thiếu/lý do; hoàn tất báo cáo không là kiểm chứng đầy đủ.

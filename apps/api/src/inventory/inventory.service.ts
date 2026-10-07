@@ -6,6 +6,7 @@ import {
   CreateMovementDto,
   InventoryErrorDto,
   InventoryPageDto,
+  InventoryListQueryDto,
   HistoryItemDto,
   MovementEnvelopeDto,
   StockItemDto,
@@ -62,15 +63,44 @@ export class InventoryService {
     return { inventory: rows[0] };
   }
 
-  async listStock(query: InventoryPageDto) {
+  async listStock(query: InventoryListQueryDto) {
+    const conditions: string[] = [];
+    const parameters: (string | Date)[] = [];
+    if (query.q) {
+      parameters.push(`%${query.q.replace(/[!%_]/g, "!$&")}%`);
+      conditions.push(
+        `(p.name ILIKE $${parameters.length} ESCAPE '!' OR p.sku ILIKE $${parameters.length} ESCAPE '!')`,
+      );
+    }
+    if (query.status) {
+      parameters.push(query.status);
+      conditions.push(`p.status = $${parameters.length}`);
+    }
+    const dayStartUtc = (value: string, nextDay: number) => {
+      const [year, month, day] = value.split("-").map(Number);
+      const date = new Date(0);
+      date.setUTCFullYear(year, month - 1, day + nextDay);
+      date.setUTCHours(-7, 0, 0, 0);
+      return date;
+    };
+    if (query.createdFrom) {
+      parameters.push(dayStartUtc(query.createdFrom, 0));
+      conditions.push(`p.created_at >= $${parameters.length}`);
+    }
+    if (query.createdTo) {
+      parameters.push(dayStartUtc(query.createdTo, 1));
+      conditions.push(`p.created_at < $${parameters.length}`);
+    }
+    const where = conditions.length ? ` WHERE ${conditions.join(" AND ")}` : "";
     return this.dataSource.transaction("REPEATABLE READ", async (manager) => {
       await manager.query("SET TRANSACTION READ ONLY");
       const items: StockItemDto[] = await manager.query(
-        `${STOCK_SELECT} ORDER BY p.id ASC LIMIT $1 OFFSET $2`,
-        [query.limit, (query.page - 1) * query.limit],
+        `${STOCK_SELECT}${where} ORDER BY p.id ASC LIMIT $${parameters.length + 1} OFFSET $${parameters.length + 2}`,
+        [...parameters, query.limit, (query.page - 1) * query.limit],
       );
       const counts: { total: string }[] = await manager.query(
-        "SELECT count(*) AS total FROM products",
+        `SELECT count(*) AS total FROM products p${where}`,
+        parameters,
       );
       return {
         items,

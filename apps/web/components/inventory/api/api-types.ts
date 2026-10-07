@@ -7,6 +7,13 @@ import type {
 } from "../types/inventory-types";
 
 export type InventoryPageParams = { page: number; limit: number };
+export type InventoryFilters = {
+  q?: string;
+  status?: StockItem["product"]["status"];
+  createdFrom?: string;
+  createdTo?: string;
+};
+export type InventoryListParams = InventoryPageParams & InventoryFilters;
 
 // GET /inventory: { items: StockItem[], page, limit, total }.
 export type StockListResponse = Page<StockItem>;

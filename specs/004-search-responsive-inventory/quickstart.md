@@ -12,15 +12,17 @@ Log in through existing admin flow and use existing products/statuses/timestamps
 
 ## Short smoke
 
-1. Open Inventory: first GET page1/limit10; current auth guard/drawer available. Capture initial query and row/count response.
+1. Open Inventory: first GET page1/limit10; current auth guard/details page available. Capture initial query and row/count response.
 2. Edit name/SKU without submit: no GET. Submit mixed-case padded name and then SKU; verify literal matching and trimmed q across whole catalog. Inspect Network; `%`/`_` must remain literal when checked.
 3. Submit ACTIVE, INACTIVE and All; combine text/status/date and compare items/total to available known products.
-4. Select From only, To only, both same day and no dates. Expect UTC+7 boundaries per [API contract](contracts/inventory-api.md). Reversed range shows FE error with no GET. Calendar-only UI prevents impossible typed dates; independently send read-only invalid query strings through existing authenticated client to confirm backend400 (e.g.2026-02-30, timestamp, reversed range). Do not claim this proves invalid typed-date UI handling.
+4. Select From only, To only, both same day and no dates. Expect UTC+7 boundaries per [API contract](contracts/inventory-api.md). Record three separate checks: FE picker prevents invalid date input/selection; FE Form reports reversed range with no GET; BE authenticated direct read-only invalid queries return400 (e.g.2026-02-30, timestamp, reversed range). HTTP400 is not FE PASS. Do not add wrappers or fault frameworks to expose artificial invalid-input paths.
 5. Change page with unsaved draft edits: request retains applied filters. Change size20/50/100: page1. Reset: clears all filters/page1, retains size and reloads. Check a no-match query and a direct beyond-end page: empty items, correct filtered total, no clamping.
 6. Observe loading and ordinary API error/retry only if encountered without faults. If controllable browser network throttling is used, submit two distinct filters/pages and verify final rows/total reflect latest identity; record observed requests, not a claim of exhaustive race coverage. Unobserved error/overlap cases remain NOT RUN.
-7. Open existing Inventory drawer: stock/history readable, action controls intact; avoid movement writes in dev. Confirm history request remains default20. This does not re-certify auth/idempotency or advanced operation flows.
-8. At1920×1080/sidebar open/default10/closed drawer, record screenshot and document scroll height; do not infer fit from a build. At768×1024 and390×844 check sidebar reopening, wrapping, local table scroll, action/pagination and drawer usability.20+ rows may scroll vertically.
+7. Open existing Inventory details page: stock/history readable, action controls intact; avoid movement writes in dev. Confirm history request remains default20. This does not re-certify auth/idempotency or advanced operation flows.
+8. At1920×1080/sidebar open/default10/catalog view, record screenshot and document scroll height; do not infer fit from a build. At768×1024 and390×844 check sidebar reopening, wrapping, local table scroll, action/pagination and details page usability.20+ rows may scroll vertically.
 
 ## Evidence format and limits
 
 For each check record date, existing-dev URL, viewport, action, sanitized request/response and actual UI result. Record gates separately. Read-only source review supports design only; HTTP alone is not UI PASS. Existing data may leave date boundaries/status examples unverified. No new automated tests, proxy/fault matrix or environment; no mutation/replay testing and no claims about backend transaction rollback from browser abort.
+
+Smoke checks lacking evidence remain NOT RUN and their verification tasks remain pending. They do not block independent responsive implementation or quality gates. Handoff lists each missing check and its reason; finishing the report is not complete verification.

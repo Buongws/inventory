@@ -23,10 +23,12 @@ A supplied empty/invalid date or reversed validated range is400 INVALID_INPUT. O
 
 ## Frontend transient state
 
-- **Draft form**: q/status/From/To, owned by Ant Form. Editing has no network effect.
+- **Draft form**: q/status/From/To, owned by Ant Form. Editing has no network effect. Calendar-only pickers prevent invalid date input/selection; Form rejects reversed ranges without dispatch. These FE checks are separate from backend real-date/range validation.
 - **Applied filters**: normalized strings in existing inventory query state. Separate from draft, used by paging/retry/movement reload.
 - **Catalog query**: actor + applied filters + page + size + reload version identify each request. Initial page1/size10/unfiltered. Submit→applied filters/page1/version increment; reset→clear draft/applied/page1/version increment, size retained; size change→page1; page change retains filters.
-- **Read resource**: loading → ready or error for the active identity. Abort/identity guards prevent old rows, totals or errors being published. Pending data never borrows another identity's total.
-- **Drawer/operation state**: remains independent. Filtering the selected product out does not discard its operation, alter key/payload or dispatch a POST.
+- **Read resource**: loading → ready or error for the active identity. Abort/identity guards prevent old rows, totals or errors being published. Ready rows/count and errors require the full active identity. During loading only, the last total for the same actor/applied filters may be retained as a navigation placeholder; no old rows are shown and another actor/filter never borrows it.
+- **Details-route/operation state**: remains independent. Filtering the selected product out does not discard its operation, alter key/payload or dispatch a POST.
 
 No localStorage/URL/Redux filter persistence is added. A fresh page entry uses unfiltered defaults. Existing session and movement state transitions remain unchanged.
+
+The shared `/inventory` layout owns transient list context across the catalog and `/inventory/[productId]`. Internal return retains draft/applied filters and page/size; hard reload recreates defaults. The route product ID scopes detail/history reads and operation selection.

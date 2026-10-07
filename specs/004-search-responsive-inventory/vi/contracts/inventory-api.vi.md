@@ -24,3 +24,6 @@ Giữ envelope items/page/limit/total và stock item. total toàn catalog sau l�
 ## Tương thích
 
 Chỉ omitted limit của endpoint này→10; movement history vẫn20, không nhận filter mới. Product defaults/detail/auth/refresh/POST/idempotency/Gateway giữ nguyên. Update Swagger DTO/list; không endpoint/schema mới.
+
+
+Backend validate ngày thật/range trả400 chỉ là bằng chứng BE, không là FE PASS. Khi implement cập nhật ví dụ GET Postman search/filter/pagination hiện có, không test script/environment mới.

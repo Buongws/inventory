@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { TERMINAL_OUTCOME } from "../constants/movement";
 import {
-  DEFAULT_PAGE_SIZE,
+  CATALOG_PAGE_SIZE,
+  HISTORY_PAGE_SIZE,
   FIRST_PAGE,
   READ_STATUS,
 } from "../constants/inventory";
+import type { InventoryFilters } from "../api/api-types";
 import type { InventoryDataOptions } from "../types/hook-types";
 import { inventoryApi } from "../api/inventory-api";
 import { createAbortScope } from "../../../lib/abort-scope";
@@ -16,28 +18,37 @@ import { useInventoryResource } from "./use-inventory-resource";
 export const useInventoryData = ({
   enabled,
   actorId,
-  product,
+  productId = "",
 }: InventoryDataOptions) => {
   const [scope] = useState(createAbortScope);
   const [query, setQuery] = useState({
+    filters: {} as InventoryFilters,
     page: FIRST_PAGE,
-    size: DEFAULT_PAGE_SIZE,
+    size: CATALOG_PAGE_SIZE,
     historyPage: FIRST_PAGE,
-    historySize: DEFAULT_PAGE_SIZE,
+    historySize: HISTORY_PAGE_SIZE,
     catalogVersion: 0,
     stockVersion: 0,
     historyVersion: 0,
   });
-  const productId = product?.productId ?? "";
-  const catalogId = `${actorId ?? ""}:${query.page}:${query.size}:${query.catalogVersion}`;
+  const catalogId = JSON.stringify([
+    actorId,
+    query.filters,
+    query.page,
+    query.size,
+    query.catalogVersion,
+  ]);
   const stockId = `${actorId ?? ""}:${productId ?? ""}:${query.stockVersion}`;
   const historyId = `${actorId ?? ""}:${productId ?? ""}:${query.historyPage}:${query.historySize}:${query.historyVersion}`;
   const stock = useInventoryResource({
-    enabled,
+    enabled: enabled && !productId,
     queryId: catalogId,
     scope,
     load: (signal) =>
-      inventoryApi.listStock({ page: query.page, limit: query.size }, signal),
+      inventoryApi.listStock(
+        { ...query.filters, page: query.page, limit: query.size },
+        signal,
+      ),
     errorMessage: "Không thể tải danh sách tồn kho. Hãy thử tải lại.",
   });
 
@@ -65,6 +76,14 @@ export const useInventoryData = ({
     errorMessage: "Không thể tải lịch sử tồn kho. Hãy thử tải lại.",
   });
 
+  const applyFilters = (filters: InventoryFilters) =>
+    setQuery((q) => ({
+      ...q,
+      filters,
+      page: FIRST_PAGE,
+      catalogVersion: q.catalogVersion + 1,
+    }));
+
   const changePage = (page: number, size: number) =>
     setQuery((q) => ({
       ...q,
@@ -79,14 +98,6 @@ export const useInventoryData = ({
       historySize: size,
     }));
 
-  const openProduct = () =>
-    setQuery((q) => ({
-      ...q,
-      historyPage: FIRST_PAGE,
-      historySize: DEFAULT_PAGE_SIZE,
-      stockVersion: q.stockVersion + 1,
-      historyVersion: q.historyVersion + 1,
-    }));
   const retryCatalog = () =>
     setQuery((q) => ({ ...q, catalogVersion: q.catalogVersion + 1 }));
   const retryStock = () =>
@@ -112,6 +123,8 @@ export const useInventoryData = ({
     scope.abortAll();
     setQuery((q) => ({
       ...q,
+      historyPage: FIRST_PAGE,
+      historySize: HISTORY_PAGE_SIZE,
       catalogVersion: q.catalogVersion + 1,
       stockVersion: q.stockVersion + 1,
       historyVersion: q.historyVersion + 1,
@@ -124,7 +137,9 @@ export const useInventoryData = ({
     history: history.visible,
     total:
       stock.resource.status === READ_STATUS.READY &&
-      stock.resource.queryId.startsWith(`${actorId ?? ""}:`)
+      stock.resource.queryId.startsWith(
+        `${JSON.stringify([actorId, query.filters]).slice(0, -1)},`,
+      )
         ? stock.resource.data.total
         : 0,
     historyTotal:
@@ -134,9 +149,9 @@ export const useInventoryData = ({
       )
         ? history.resource.data.total
         : 0,
+    applyFilters,
     changePage,
     changeHistoryPage,
-    openProduct,
     retryCatalog,
     retryStock,
     retryHistory,

@@ -23,10 +23,12 @@ Date được gửi nhưng rỗng/sai hoặc range đảo:400 INVALID_INPUT. M�
 
 ## State FE tạm thời
 
-- Draft: Ant Form quản lý q/status/From/To, edit không request.
+- Draft: Ant Form quản lý q/status/From/To, edit không request. Picker chỉ chọn lịch ngăn nhập/chọn ngày sai; Form chặn range đảo không dispatch. Kiểm FE riêng backend validate ngày thật/range.
 - Applied filters: normalized strings trong query state hiện có; paging/retry/reload movement dùng bộ này.
 - Identity: actor/filter/page/size/version. Khởi tạo1/10/không filter. Submit áp dụng/page1/tăng version; reset xóa draft/applied/page1/tăng version, giữ size; đổi size→page1; đổi page giữ filter.
-- Resource: loading→ready/error cho identity hiện tại; abort/identity guard bảo vệ rows/total/error. Pending không mượn total identity khác.
-- Drawer/operation độc lập; filter làm mất row được chọn không discard operation/đổi key/payload/gửi POST.
+- Resource: loading→ready/error cho identity hiện tại; abort/identity guard bảo vệ rows/total/error. Ready rows/count và error yêu cầu full identity hiện tại. Riêng loading được giữ total gần nhất cùng actor/applied filters làm placeholder navigation; không hiện rows cũ hoặc mượn count actor/filter khác.
+- Details-route/operation độc lập; filter làm mất row được chọn không discard operation/đổi key/payload/gửi POST.
 
 Không persistence localStorage/URL/Redux cho filter. Entry mới về unfiltered defaults. Session/movement transitions giữ nguyên.
+
+Layout chung `/inventory` giữ context danh sách tạm qua catalog và `/inventory/[productId]`. Quay lại nội bộ giữ draft/applied filters/page-size; reload toàn trang tạo defaults mới. Product ID trong route scope read detail/history và selection operation.

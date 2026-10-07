@@ -24,3 +24,6 @@ Response keeps existing `items`, `page`, `limit`, `total` envelope and stock ite
 ## Compatibility
 
 Only this endpoint's omitted limit changes to10. GET movement history remains default20 and receives no new filter fields. Product CRUD defaults, stock detail, auth/refresh, movement POST/idempotency and Gateway behavior are unchanged. Update existing Swagger DTO/list documentation; no new endpoint or schema migration.
+
+
+Backend real-date/range400 is backend evidence only, never frontend PASS. Update existing Postman GET search/filter/pagination examples during implementation without adding test scripts or environments.

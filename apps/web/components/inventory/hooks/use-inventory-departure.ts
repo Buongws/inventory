@@ -6,6 +6,7 @@ import { OPERATION_STATUS } from "../constants/movement";
 import type { InventoryDepartureOptions } from "../types/hook-types";
 
 export const useInventoryDeparture = ({
+  pageId,
   operationRef,
   operation,
   discard,
@@ -37,7 +38,7 @@ export const useInventoryDeparture = ({
       window.removeEventListener("pageshow", handlePageShow);
       release();
     };
-  }, []);
+  }, [pageId]);
   const warnBeforeUnload = useEffectEvent((event: BeforeUnloadEvent) => {
     const current = operationRef.current;
     if (

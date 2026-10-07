@@ -17,6 +17,7 @@ import type { InventoryOperationOptions } from "../types/hook-types";
 import { createAbortScope } from "../../../lib/abort-scope";
 import { createMovement, dispatchMovement } from "../services/movement-command";
 import { store } from "../../../lib/store";
+import { appToast, type ToastStatus } from "../../../lib/toast";
 import type {
   InventoryOperation,
   MovementPayload,
@@ -169,6 +170,23 @@ export const useInventoryOperation = ({
         attempt.sending = false;
         applyTerminal(current);
         setOperation({ ...current });
+        if (
+          current.message &&
+          selectionRef.current === current.productId &&
+          store.getState().auth.user?.id === current.actorId
+        ) {
+          const toastStatus: ToastStatus =
+            current.terminal?.kind === TERMINAL_OUTCOME.SUCCESS
+              ? "success"
+              : current.status === OPERATION_STATUS.TERMINAL
+                ? "error"
+                : current.priorUncertain
+                  ? "unknown"
+                  : "warning";
+          appToast[toastStatus](current.message, {
+            toastId: `${current.key}:${attempt.id}`,
+          });
+        }
       }
     }
   };

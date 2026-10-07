@@ -23,7 +23,7 @@
 ## Form and asynchronous state
 
 - **Decision**: Ant Form owns drafts; existing query state owns applied filters. Reuse abort scope/resource identity, with filters included in catalog identity. Display total only for the active identity, rather than current actor prefix. Two independent DatePickers use inputReadOnly and format YYYY-MM-DD.
-- **Rationale**: current total logic can retain an old query's total; filters make that visible. Calendar selection avoids automatic correction of invalid typed dates and independent pickers avoid automatic range ordering. Clearing dates remains supported. Form validates range and accepted calendar values; backend independently validates direct query strings.
+- **Rationale**: current total logic can retain an old query's total; filters make that visible. Calendar-only selection prevents invalid date input/selection; Form rejects reversed ranges without a request. FE prevention/range evidence is distinct from backend real-date/range400. Independent pickers avoid automatic range ordering. Clearing dates remains supported. Form validates range and accepted calendar values; backend independently validates direct query strings.
 - **Alternatives considered**: duplicate draft state, a new data hook, RangePicker's automatic ordering and editable raw-date wrappers were rejected. No requirement demands typing dates. [Ant Design DatePicker](https://ant.design/components/date-picker/).
 
 ## Responsive presentation

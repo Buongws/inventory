@@ -171,7 +171,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"USB-C cable 1m \u2014 updated\",\n  \"priceVnd\": \"139000\"\n}"
+              "raw": "{\n  \"name\": \"USB-C cable 1m — updated\",\n  \"priceVnd\": \"139000\"\n}"
             },
             "url": "{{baseUrl}}/products/{{productId}}"
           }
@@ -909,6 +909,95 @@
             ],
             "url": "{{baseUrl}}/inventory/{{productId}}/movements/{{movementId}}",
             "description": "Verify page/order and immutable movement facts. Rename/SKU edit changes current product fields only; deactivation retains history. No update/delete routes exist."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory search and responsive UI examples",
+      "item": [
+        {
+          "name": "Stock search name or SKU",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory?q=Adapter&page=1&limit=10",
+            "description": "GET whole-catalog product filters. Dates are YYYY-MM-DD UTC+7: >=From day start and <day after To. Inventory list defaults1/10; movement history remains1/20."
+          }
+        },
+        {
+          "name": "Stock ACTIVE filter",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory?status=ACTIVE&page=1&limit=10",
+            "description": "GET whole-catalog product filters. Dates are YYYY-MM-DD UTC+7: >=From day start and <day after To. Inventory list defaults1/10; movement history remains1/20."
+          }
+        },
+        {
+          "name": "Stock created day UTC+7",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory?createdFrom=2026-10-07&createdTo=2026-10-07&page=1&limit=10",
+            "description": "GET whole-catalog product filters. Dates are YYYY-MM-DD UTC+7: >=From day start and <day after To. Inventory list defaults1/10; movement history remains1/20."
+          }
+        },
+        {
+          "name": "Stock combined filters",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory?q=Adapter&status=ACTIVE&createdFrom=2026-10-01&createdTo=2026-10-07&page=1&limit=10",
+            "description": "GET whole-catalog product filters. Dates are YYYY-MM-DD UTC+7: >=From day start and <day after To. Inventory list defaults1/10; movement history remains1/20."
+          }
+        },
+        {
+          "name": "Stock filtered page2",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory?q=Adapter&page=2&limit=10",
+            "description": "GET whole-catalog product filters. Dates are YYYY-MM-DD UTC+7: >=From day start and <day after To. Inventory list defaults1/10; movement history remains1/20."
+          }
+        },
+        {
+          "name": "Stock page size20",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory?status=ACTIVE&page=1&limit=20",
+            "description": "GET whole-catalog product filters. Dates are YYYY-MM-DD UTC+7: >=From day start and <day after To. Inventory list defaults1/10; movement history remains1/20."
           }
         }
       ]

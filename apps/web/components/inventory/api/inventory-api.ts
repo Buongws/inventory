@@ -5,6 +5,7 @@ import type {
   CreateMovementRequest,
   CreateMovementResponse,
   InventoryPageParams,
+  InventoryListParams,
   MovementHistoryResponse,
   MovementRequestOptions,
   StockListResponse,
@@ -13,7 +14,7 @@ import type {
 
 export const inventoryApi = {
   listStock: async (
-    params: InventoryPageParams,
+    params: InventoryListParams,
     signal: AbortSignal,
   ): Promise<StockListResponse> => {
     const { data } = await api.get<StockListResponse>("/inventory", {

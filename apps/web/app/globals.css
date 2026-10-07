@@ -1,3 +1,8 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source("../");
+
+/* Keep existing base styles and Ant Design behavior without Preflight. */
 :root {
   color: #172033;
   background: #f6f8fc;
@@ -142,29 +147,68 @@ a {
   color: #5e6c84;
 }
 
-.inventory-layout {
+.inventory-layout.ant-layout {
   min-height: 100vh;
+  min-height: 100dvh;
 }
-.inventory-brand {
-  padding: 24px 16px;
-  color: white;
-  font-weight: 700;
+.inventory-layout > .ant-layout-sider {
+  border-right: 1px solid #e2e8f0;
 }
-.inventory-layout .inventory-logout.ant-btn {
-  color: #ffffffd9;
+.inventory-layout .ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
 }
-.inventory-layout .inventory-logout.ant-btn:not(:disabled):hover {
-  color: white;
-  background: #ffffff14;
+.inventory-layout .ant-menu-inline {
+  border-inline-end: 0;
 }
-.inventory-content {
-  min-width: 0;
-  padding: 24px;
+.inventory-layout .ant-menu-item:not(.ant-menu-item-selected) {
+  color: #334155;
 }
 .inventory-section {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 .inventory-content :focus-visible {
   outline: 2px solid #315ad7;
   outline-offset: 2px;
+}
+
+.inventory-layout > .ant-layout {
+  min-width: 0;
+}
+.inventory-content .inventory-heading {
+  margin: 0 0 16px;
+}
+.inventory-filters .ant-form-item {
+  min-width: 0;
+  margin-bottom: 0;
+}
+.inventory-filters .ant-picker {
+  width: 100%;
+}
+.inventory-table .ant-table-wrapper .ant-table-cell {
+  overflow-wrap: anywhere;
+}
+.inventory-table .ant-table-wrapper .ant-table-thead > tr > th,
+.inventory-table .ant-table-wrapper .ant-table-tbody > tr > td {
+  padding-inline: 20px;
+}
+.inventory-table .ant-table-wrapper .ant-table-pagination.ant-pagination {
+  margin: 0;
+  padding: 16px 20px;
+  flex-wrap: wrap;
+  gap: 8px 0;
+}
+.inventory-layout .ant-layout-sider-zero-width-trigger {
+  top: 20px;
+  z-index: 2;
+}
+@media (max-width: 991px) {
+  .inventory-content .inventory-heading {
+    padding-left: 28px;
+  }
+}
+@media (max-width: 575px) {
+  .inventory-table .ant-table-wrapper .ant-table-pagination.ant-pagination {
+    padding: 16px;
+  }
 }

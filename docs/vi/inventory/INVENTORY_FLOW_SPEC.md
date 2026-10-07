@@ -2,6 +2,8 @@
 
 Ngày đối chiếu code: **07/10/2026**.
 
+Cập nhật theo yêu cầu hiện tại: nút Inventory mở trang `/inventory/[productId]` có tồn hiện tại, bảng lịch sử và form nhập/xuất; không mở drawer. Các spec feature được liên kết bên dưới là tài liệu của phạm vi trước thay đổi này.
+
 Tài liệu này giải thích hành vi đang được triển khai để đọc code và thực hành. Đây là tài liệu bổ sung, không thay thế [spec nghiệp vụ Inventory](INVENTORY_SPEC.md) hoặc [spec frontend](../../../specs/003-frontend-inventory/vi/spec.vi.md), và không phải kết quả chạy workflow Spec Kit. Mô tả từ code không đồng nghĩa mọi tình huống đã được kiểm chứng runtime.
 
 ## 1. Inventory quản lý những gì?
@@ -56,7 +58,7 @@ Frontend gate giúp điều khiển UI. Mọi endpoint API, kể cả replay, v�
 
 ## 4. Flow tải danh sách tồn kho
 
-- `useInventoryData` khởi tạo `page=1`, `size=20`, gọi `GET /inventory?page=1&limit=20`.
+- `useInventoryData` khởi tạo `page=1`, `size=10`, gọi `GET /inventory?page=1&limit=10`.
 - API đọc toàn bộ catalog, gồm ACTIVE/INACTIVE, ghép balance. Chưa có dòng balance được biểu diễn là tồn 0; GET không tạo dòng balance.
 - Table hiển thị tên, SKU, trạng thái, tồn và nút Inventory. Danh sách sắp xếp theo product ID tăng dần.
 - Đổi trang gọi GET mới. Đổi page size về 10/20/50/100 thì reset page về 1.
@@ -65,24 +67,25 @@ Frontend gate giúp điều khiển UI. Mọi endpoint API, kể cả replay, v�
 
 `useInventoryResource` giữ trạng thái `loading`, `ready` hoặc `error`. Query identity gồm actor, trang/kích thước và version; response của query cũ không được dùng cho query hiện tại. Cleanup abort request cũ. API trả items/count trong cùng snapshot cho từng request, không cam kết nhiều request có cùng snapshot.
 
-Hiện API chỉ có phân trang, chưa có search/filter toàn catalog. Table không giả lập tìm kiếm bằng cách lọc một trang đã tải.
+Form tìm kiếm gửi `q`, `status`, `createdFrom`, `createdTo` đến server cùng `page/limit`. Áp dụng bộ lọc reset page về 1; Table không giả lập tìm kiếm bằng cách lọc một trang đã tải.
 
-## 5. Flow mở drawer, xem tồn và lịch sử
+## 5. Flow mở trang chi tiết, xem tồn và lịch sử
 
-1. Bấm Inventory trên một hàng: nếu đang giữ operation chưa kết thúc, phải đi qua flow xác nhận rời ở mục 10.
-2. Ghi nhận sản phẩm được chọn, reset phân trang lịch sử về `1/20`, rồi mở drawer.
-3. Tải riêng `GET /inventory/:productId` và `GET /inventory/:productId/movements?page=1&limit=20`.
+1. Bấm Inventory trên một hàng điều hướng đến `/inventory/:productId`.
+2. Layout chung giữ bộ lọc, Form instance và phân trang catalog khi chuyển giữa danh sách/chi tiết. Trang chi tiết có nút “Quay lại danh sách”; nút Inventory ở sidebar cũng quay lại danh sách.
+3. Trang chi tiết tải riêng `GET /inventory/:productId` và `GET /inventory/:productId/movements?page=1&limit=20`. Không tải catalog khi đang ở trang chi tiết.
 4. Tồn và lịch sử có loading/error/nút retry độc lập. Lỗi history không chặn nhập/xuất nếu tồn hiện tại đã tải thành công.
 5. History phân trang riêng; đổi trang history không đổi trang catalog. Thứ tự là `createdAt DESC, id DESC`; UI hiển thị UTC.
-6. Đóng rồi mở lại xóa draft chưa gửi và tải lại dữ liệu sản phẩm. Trang catalog vẫn được giữ.
+6. Rời trang chi tiết xóa draft/operation và reset phân trang lịch sử. Quay lại danh sách tải GET mới, giữ bộ lọc và trang catalog trong cùng phiên layout. Reload toàn trang khởi tạo lại state local.
+7. Mở trực tiếp URL chi tiết hoặc reload URL đó vẫn tải tồn/history theo productId trên route, không cần chọn hàng trước. Form bị chặn submit tới khi tồn ready.
 
-Movement lưu dữ kiện lịch sử bất biến. Tên/SKU/trạng thái đi kèm history được lấy từ catalog hiện tại, không phải snapshot tên sản phẩm tại lúc giao dịch. Product không tồn tại trả `404 PRODUCT_NOT_FOUND`; product chưa có movement trả history rỗng.
+Movement lưu dữ kiện lịch sử bất biến. Tên/SKU/trạng thái đi kèm history được lấy từ catalog hiện tại, không phải snapshot tên sản phẩm tại lúc giao dịch. Product không tồn tại trả `404 PRODUCT_NOT_FOUND`; product chưa có movement trả history rỗng. Bảng history và form nằm cạnh nhau trên màn rộng, xếp dọc trên màn hẹp.
 
 ## 6. Flow gửi nhập/xuất
 
 ### 6.1. Validate và tạo operation
 
-Form mặc định `RECEIPT`. Chỉ được gửi khi tồn của sản phẩm được chọn ở trạng thái `ready`, user là admin và không có operation chưa kết thúc.
+Form mặc định `RECEIPT`. Chỉ được gửi khi tồn của sản phẩm trên route ở trạng thái `ready`, user là admin và không có operation chưa kết thúc.
 
 | Field | Quy tắc |
 |---|---|
@@ -127,7 +130,7 @@ Frontend chỉ công nhận `201` khi movement khớp actor/product/type/quantit
 
 | Kết quả terminal | UI làm gì? |
 |---|---|
-| Thành công / replay thành công | Giữ drawer, reset quantity/reason, giữ type; reload catalog, tồn và history; history về page 1 |
+| Thành công / replay thành công | Giữ trang chi tiết, reset quantity/reason, giữ type; reload catalog, tồn và history; history về page 1 |
 | Stock rejection 409 | Reset quantity/reason, reload tồn; chờ tồn ready trước giao dịch mới |
 | Product missing 404 | Reload tồn để hiện lỗi; không tự tạo giao dịch mới khi tồn chưa ready |
 | INVALID_INPUT 400, chưa có uncertainty trước đó | Giữ draft và hiển thị lỗi trường để sửa |
@@ -171,15 +174,15 @@ Kết quả đến khi mất quyền được giữ nội bộ, không hiển th
 
 Refresh thất bại trước dispatch và sau POST bị 401 được ghi nhận khác nhau. Lỗi cục bộ chưa gửi không tự được coi là kết quả nghiệp vụ; operation được giữ để khôi phục đúng phiên. Điều hướng sang login qua guard có thể discard operation theo lựa chọn người dùng; đây khác với khôi phục phiên tại chỗ.
 
-## 10. Flow đóng drawer, đổi sản phẩm và rời trang
+## 10. Flow quay lại danh sách và rời trang
 
-Close drawer, mask/Escape, đổi sản phẩm, menu Dashboard, logout và login đều qua `requestDeparture` khi có operation chưa terminal.
+Nút “Quay lại danh sách”, menu Inventory/Dashboard, logout và login đều qua `requestDeparture` khi có operation chưa terminal. Không còn thao tác đóng drawer, mask hoặc Escape.
 
 - **Ở lại**: giữ operation, key/body và draft.
-- **Rời**: kiểm tra operation identity lúc xác nhận; abort signal, đánh dấu discarded và bỏ operation trước khi chạy hành động rời. Modal không được discard nhầm một operation mới.
+- **Rời**: kiểm tra operation identity lúc xác nhận; abort signal, đánh dấu discarded và bỏ operation trước khi chạy hành động rời. Modal xác nhận rời không được discard nhầm một operation mới; đây chỉ là guard thao tác, không phải màn xem chi tiết.
 - Khi operation terminal hoặc chỉ có draft chưa gửi: không yêu cầu xác nhận operation.
 - `beforeunload` chỉ được gắn khi có operation chưa terminal; lời cảnh báo do browser quyết định hiển thị.
-- `pagehide`/unmount bỏ operation và hủy read/request đang giữ. Trở lại từ bfcache qua `pageshow.persisted` xóa state cũ, mở lại fresh GET nếu được phép.
+- Đổi route trong Inventory, `pagehide` hoặc unmount bỏ operation và hủy read/request đang giữ. Browser Back/Forward không có router interception hay history sentinel; khi route thực sự đổi, operation cũ bị discard. Trở lại từ bfcache qua `pageshow.persisted` xóa state cũ, mở lại fresh GET nếu được phép.
 
 Abort phía browser **không chứng minh rollback DB**. Sau khi rời giữa chừng, phải xem history trước khi nhập/xuất lại. Operation/key không lưu vào localStorage; reload không khôi phục operation để POST tiếp.
 
@@ -191,7 +194,7 @@ Tất cả path frontend bên dưới tính từ `apps/web/components/inventory/
 |---|---|
 | `inventory-management.tsx` | Ghép auth, selection, data, operation, departure và layout |
 | `inventory-table.tsx` | Danh sách tồn, phân trang, chọn sản phẩm |
-| `inventory-drawer.tsx` | Tồn chi tiết, history, form và recovery UI |
+| `inventory-details.tsx` | Trang tồn chi tiết, history, form và recovery UI |
 | `hooks/use-inventory-data.ts` | Query/pagination/version và refresh sau movement |
 | `hooks/use-inventory-resource.ts` | GET lifecycle, abort và query identity |
 | `hooks/use-inventory-operation.ts` | Operation/attempt latch, submit/retry, terminal và ownership |
@@ -202,6 +205,16 @@ Tất cả path frontend bên dưới tính từ `apps/web/components/inventory/
 | `services/movement-error.ts` | Phân loại lỗi, giữ uncertainty và tính retry |
 | `types/`, `constants/` | Contract TypeScript và giá trị nghiệp vụ dùng chung |
 
+Route được tạo bởi `apps/web/app/inventory/page.tsx` và `[productId]/page.tsx`; UI được quản lý trong `apps/web/app/inventory/layout.tsx` để giữ state khi điều hướng nội bộ.
+
 Ngoài feature: `apps/web/lib/api.ts` giữ interceptor/dispatch guard; `apps/web/components/auth/api/` chứa request login/register/logout/refresh và type response; `apps/web/components/auth/` giữ phiên Redux, storage, auth service và `useAuth`. Backend: `apps/api/src/inventory/inventory.controller.ts`, `inventory.dto.ts` và `inventory.service.ts` lần lượt xử lý HTTP/quyền, input và transaction.
 
 Cleanup idempotency chạy mỗi giờ UTC, chỉ xóa result hết hạn theo batch; không xóa movement. Expiry có hiệu lực ngay cả khi cleanup chưa chạy. Đối chiếu runtime đã có tại [validation frontend](../../../specs/003-frontend-inventory/validation.md) và [validation API](../../../specs/002-inventory-balances/validation.md); các case deferred/unrun không phải PASS.
+
+## 12. Kiểm chứng thay đổi sang trang chi tiết
+
+- Typecheck, lint, format check và production build web: PASS; build đăng ký route động `/inventory/[productId]`.
+- Browser: bấm Inventory của sản phẩm `DEMO-0134` mở URL chi tiết, hiển thị tồn 20 và hai dòng lịch sử có sẵn: PASS.
+- Browser: submit form rỗng hiển thị lỗi quantity/reason; không tạo movement: PASS.
+- Browser: nút quay lại đưa về danh sách: PASS. Giữ bộ lọc/trang không mặc định được giữ bởi layout chung, nhưng chưa hoàn thành smoke riêng cho trường hợp đó.
+- Không gửi giao dịch mới để kiểm chứng thay đổi này. Các kịch bản retry, mất phiên và rời khi POST đang chạy chưa được chạy lại; logic command/error giữ nguyên, cleanup route được bổ sung.

@@ -1,15 +1,11 @@
 import type { RefObject } from "react";
 import type { AbortScope } from "../../../lib/abort-scope";
-import type {
-  InventoryOperation,
-  StockItem,
-  TerminalOutcome,
-} from "./inventory-types";
+import type { InventoryOperation, TerminalOutcome } from "./inventory-types";
 
 export type InventoryDataOptions = {
   enabled: boolean;
   actorId?: string;
-  product: StockItem | null;
+  productId?: string;
 };
 
 export type InventoryResourceOptions<T> = {
@@ -21,6 +17,7 @@ export type InventoryResourceOptions<T> = {
 };
 
 export type InventoryDepartureOptions = {
+  pageId?: string;
   operationRef: RefObject<InventoryOperation | null>;
   operation: InventoryOperation | null;
   discard: () => void;

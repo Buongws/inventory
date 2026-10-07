@@ -23,7 +23,7 @@
 ## Form và async
 
 - **Quyết định**: Form owns draft; query state hiện có owns applied filters. Identity thêm filter, total chỉ identity hiện tại thay prefix actor. Hai DatePicker độc lập inputReadOnly/format YYYY-MM-DD.
-- **Lý do**: total hiện có thể giữ query cũ; chọn lịch tránh sửa ngầm ngày nhập sai, hai picker không tự đảo range. Cho clear, validate range/calendar tại FE; backend validate query trực tiếp độc lập.
+- **Lý do**: total hiện có thể giữ query cũ; picker chỉ chọn lịch ngăn nhập/chọn ngày sai, Form chặn range đảo không request; bằng chứng FE riêng backend ngày thật/range400. Hai picker không tự đảo range. Cho clear, validate range/calendar tại FE; backend validate query trực tiếp độc lập.
 - **Phương án khác**: draft state trùng, data hook mới, RangePicker tự order, wrapper raw-date bị loại; không có yêu cầu gõ ngày. [Ant Design DatePicker](https://ant.design/components/date-picker/).
 
 ## Responsive

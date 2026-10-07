@@ -18,14 +18,13 @@ export type InventoryTableProps = {
   onRetry: () => void;
 };
 
-export type InventoryDrawerProps = {
-  product: StockItem | null;
+export type InventoryDetailsProps = {
+  productId: string;
   stock: ReadResource<StockItem>;
   history: ReadResource<Page<HistoryItem>>;
   historyPage: number;
   historySize: number;
   historyTotal: number;
-  onClose: () => void;
   onStockRetry: () => void;
   onHistoryRetry: () => void;
   onHistoryPageChange: (page: number, size: number) => void;
@@ -33,7 +32,6 @@ export type InventoryDrawerProps = {
   onSubmit?: (payload: MovementPayload) => void;
   resetDraftVersion?: number;
   validationErrors?: MovementValidationErrors;
-  operationMessage?: string;
   retryRemainingMs?: number;
   onRetry?: () => void;
   retryDisabled?: boolean;
