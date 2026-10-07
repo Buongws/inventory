@@ -1,0 +1,29 @@
+- generic [active] [ref=e1]:
+  - main [ref=e730]:
+    - generic [ref=e731]:
+      - paragraph [ref=e732]: INVENTORY API
+      - heading "Xin chào, t012-customer" [level=1] [ref=e733]
+      - paragraph [ref=e734]:
+        - text: Bạn đã đăng nhập với email
+        - strong [ref=e735]: t012-customer@inventory.test
+        - text: .
+      - generic [ref=e736]:
+        - generic [ref=e737]:
+          - term [ref=e738]: Vai trò
+          - definition [ref=e739]: customer
+        - generic [ref=e740]:
+          - term [ref=e741]: Trạng thái
+          - definition [ref=e742]: Đã xác thực
+      - button "Đăng xuất" [ref=e743] [cursor=pointer]
+  - generic [ref=e39] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e40]
+    - generic [ref=e77]:
+      - button "Open issues overlay" [ref=e78]:
+        - generic [ref=e79]:
+          - generic [aria-hidden] [ref=e80]: "1"
+          - generic [ref=e81]: "2"
+        - generic [ref=e82]:
+          - text: Issue
+          - generic [aria-hidden] [ref=e83]: s
+      - button "Collapse issues badge" [ref=e84]
+  - alert [ref=e44]: Xin chào, t012-customer

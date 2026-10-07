@@ -1,0 +1,45 @@
+name: inventory-learning
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: inventory
+      POSTGRES_PASSWORD: inventory_dev
+      POSTGRES_DB: inventory
+    ports: ["127.0.0.1:${POSTGRES_PORT:-5432}:5432"]
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U inventory -d inventory"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  redis:
+    image: redis:7.4-alpine
+    ports: ["127.0.0.1:6379:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  api:
+    build: .
+    ports: ["127.0.0.1:3001:3001"]
+    environment:
+      NODE_ENV: development
+      PORT: 3001
+      DATABASE_URL: postgresql://inventory:inventory_dev@postgres:5432/inventory
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET:-development-only-secret-with-at-least-32-characters}
+      JWT_ISSUER: inventory-api
+      JWT_AUDIENCE: inventory-api
+      APP_ORIGIN: http://localhost:3002
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI:-http://localhost:3004/api/v1/auth/google/callback}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+volumes:
+  postgres_data:

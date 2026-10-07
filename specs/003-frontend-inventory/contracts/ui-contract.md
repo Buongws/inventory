@@ -1,0 +1,50 @@
+# Inventory UI and Integration Contract
+
+## Current learning scope — user amendment, 2026-10-07
+
+The active goal is a basic frontend for learning: left sidebar, server-paginated stock table, product Inventory drawer, receipt/issue form and immutable history. Retain existing authentication/authorization, a frozen key/body for manual retry and duplicate-submit protection. Verify normal receipt/issue, input validation, admin/customer access, basic API/read errors and same-key retry without a second movement. Preserve evidence already obtained; do not repeat unchanged behavior.
+
+Complex response/modal/session/latch races, native bfcache/browser lifecycle variants, clock/deadline/expiry verification and the authentication/refresh fault matrix are **DEFERRED** (D001–D004 in tasks). Existing implementations and bounded historical evidence remain; this amendment changes verification priorities, not the backend contract or a promise to remove guards. Deferred or unrun cases are not PASS and do not block this learning goal. No new helper/proxy fault or advanced verification; converge requires a separate user request. The detailed original scenarios below are historical/full-scope reference wherever they exceed this amendment.
+
+
+Language: **English** | [Tiếng Việt](ui-contract.vi.md)
+
+Authoritative backend: [inventory-api.md](../../002-inventory-balances/contracts/inventory-api.md). No endpoint/header/backend error changes.
+
+| UI action | Shared Axios call |
+|---|---|
+| Table page | GET /inventory with params page/limit |
+| Drawer stock | GET /inventory/:productId, no query/body |
+| History page | GET /inventory/:productId/movements params page/limit |
+| Submit/retry | POST /inventory/:productId/movements body type/quantity/trimmed reason, exactly one Idempotency-Key |
+
+Use `api` same-origin relative baseURL `/api/v1`, Next external rewrite to validated server-only GATEWAY_ORIGIN (default http://localhost:3004) through Gateway, existing bearer/credentials/refresh. Never direct API browser calls, server actions or secondary inventory Axios instance. Browser crypto.randomUUID in secure context (localhost permitted). Movement request timeout15s; GET cancellation scoped to query lifecycle. Preserve exact key/body through interceptor replay, never regenerate inside an interceptor.
+
+Inventory POST config adds optional `inventoryActorId` and `inventoryRetryUntil` to existing typed Axios config, plus the operation-owned standard Axios `signal` (preserved on replay). Request interceptor must check original admin identity/deadline before and after awaiting refresh, immediately before assigning Authorization/dispatch. Response interceptor checks same metadata after refresh and before its existing once-only api(request) replay; request check runs again. Use effective session matching the token actually chosen, not stale Redux vs localStorage mixtures. Reject locally with distinguishable actor/access/deadline reason and no POST if mismatch/non-admin/expired. Other requests omit metadata and retain behavior. Page distinguishes these local blocked outcomes from server rejection and preserves earlier uncertainty. Do not disclose token/key/body in messages/logs.
+
+Retry-After: accept nonnegative seconds or valid future HTTP date; store earliest retry timestamp; retry disabled until that time. Fallback exponential1..30 seconds with additive0–250ms jitter capped total30; supplied Retry-After never shortened/capped. No recovery POST from timers, mount or GET retry. Existing single auth replay is the only automatic exception, actor/deadline guarded. At deadline block even if UI timer lagged. Same-admin reauthentication may resume only while mounted; no in-page login subsystem added. Cross-tab automatic session synchronization is not added.
+
+Known API503 identified by exact INVENTORY_BUSY envelope; Gateway502/timed-out/no-response are unknown; unknown HTTP bodies get safe generic message, not internal server content. Stock404/409 matching saved-result responses settle command; KEY_REUSED does not settle the original outcome. 400 validation permits edit only absent prior uncertainty. No silent key rotation. Terminal success/error do not imply read resources succeeded.
+
+UI copy is Vietnamese; preserve type/status/error codes, label UTC time, product identity and recovery status. Ant App context modal/message; persistent Alert for uncertain/in-progress, not transient toast only. Hidden protected data on lost access includes payload/reason and catalog/history; show non-sensitive local recovery-loss warning. Cancel confirmation leaves everything intact. Confirm callbacks cover drawer close/mask/Escape/switch/menu/dashboard/logout/login; sign-out action runs only after confirmation. Modal pending confirmation must recheck operation identity before discard; stale responses may resolve while modal open without deleting a newer operation.
+
+Default beforeunload only while operation nonterminal. No browser-history manipulation; browser native back/forward best-effort limitation documented. Pagehide discards local operation/generations; persisted pageshow clears operation/draft/read resources and refetches after authorization, preventing bfcache recovery. Every fresh Inventory entry requests fresh stock and shows reconciliation reminder; it cannot know the old operation because nothing is persisted.
+
+## Outcome provenance, operation lifetime and authentication precedence
+
+These rules resolve I1/U1/U2/I2 without changing backend behavior or the five clarify decisions.
+
+- A validated response to the original frozen product/key/payload with status 201, PRODUCT_NOT_FOUND 404, INSUFFICIENT_STOCK 409 or STOCK_LIMIT_EXCEEDED 409 is a terminal operation result under the backend contract, including replay. It settles earlier uncertainty. No replay marker/header is required or invented. An unrecognized 404/409 body is not proof of a terminal result. A terminal stock rejection resets quantity/reason, retains type and reloads stock per Q5; a terminal success follows Q3. Errors that only reject the current retry attempt (validation/authentication, rate limit, timeout or local dispatch guard) cannot settle an earlier uncertain operation. A terminal replay is not such an attempt-only rejection.
+- Each local operation owns an AbortController/lifetime signal; every initial POST and automatic/manual replay uses that same signal, with actor/deadline metadata. Check cancellation before starting refresh, after every awaited refresh, immediately before initial dispatch and immediately before replay. Confirmed close/departure, pagehide or unmount marks the operation discarded and aborts its signal before clearing references or executing navigation. Do not cancel the shared refresh promise needed by other requests; its completion must not dispatch a discarded operation. No new generic cancellation framework. Cancellation only stops future frontend dispatch/client waiting; a POST already dispatched may have committed and cancellation does not prove rollback.
+- Separate attempt completion from UI publication. A matching attempt ID and live operation always releases its sending/latch in finally, regardless of current authorization. Do not release a newer attempt's latch. Record terminal result or recovery/auth state privately in mounted-page memory even when data cannot be shown. Publish payload/catalog/history/result and run refresh reads only for the authorized original admin and current selection/generation. If access is absent, retain hidden operation information per Q1, with no stuck sending; an unknown result remains recoverable. A privately known terminal result settles recovery, but remains hidden; after original-admin restoration apply its reset/refresh once without another POST. An operation discarded in the meantime receives no update and cannot affect a new operation.
+
+Authentication decision precedence (evaluate provenance, not HTTP status alone):
+
+| Situation | Required result |
+|---|---|
+| Refresh fails before any movement POST dispatch | Known not dispatched for this attempt. Release latch, retain same mounted operation/key/payload in auth-blocked state under Q1, hide protected data, guarded sign-in; original-admin restoration may retry. Do not introduce uncertainty unless an earlier attempt was uncertain. |
+| Actual movement POST returns server 401/403 | This attempt was rejected, not a terminal inventory result. If no refresh failure and no earlier uncertainty, retire as a definite access rejection; show no protected data while access is denied. If earlier uncertainty exists, retain recovery and that uncertainty. A 401 may enter the existing one-refresh/one-replay path; do not finalize before that path finishes. |
+| Refresh fails after movement POST returned 401 | Preserve the server-401 provenance: this attempt was rejected, but Q1 takes priority over the generic initial-401 retirement rule. Release latch, keep same mounted operation in auth-blocked state and guarded login. Preserve earlier uncertainty if present; no replay after failed refresh. |
+| Retry starts with previous uncertainty | Current-attempt preflight failure, 400/401/403, refresh failure, 429/503 or cancellation cannot prove original failure. Keep uncertainty/key/payload until a recognized terminal result, or explicit confirmed discard. |
+
+Manual scenarios: delay preflight refresh, confirm close/departure then finish refresh → zero movement dispatch; delay post-401 refresh, confirm departure then finish refresh → zero replay (the first rejected POST may exist). Repeat cancel-confirmation → same operation remains eligible. Complete POST success/error while access is lost or another actor is present → latch released, no protected publication or reads; restore original admin → known terminal result applied without POST, unknown result offers same-key retry. Exercise all four authentication rows with and without prior uncertainty. Observe real outgoing requests and distinguish temporary display fixtures from real backend outcomes; add no automated tests.

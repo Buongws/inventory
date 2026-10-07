@@ -1,0 +1,20 @@
+- generic [active] [ref=f2e1]:
+  - main [ref=f2e43]:
+    - generic [ref=f2e44]:
+      - paragraph [ref=f2e45]: INVENTORY API
+      - heading "Xin chào, t012-admin" [level=1] [ref=f2e46]
+      - paragraph [ref=f2e47]:
+        - text: Bạn đã đăng nhập với email
+        - strong [ref=f2e48]: t012-admin@inventory.test
+        - text: .
+      - button "Inventory" [ref=f2e49] [cursor=pointer]
+      - generic [ref=f2e51]:
+        - generic [ref=f2e52]:
+          - term [ref=f2e53]: Vai trò
+          - definition [ref=f2e54]: admin
+        - generic [ref=f2e55]:
+          - term [ref=f2e56]: Trạng thái
+          - definition [ref=f2e57]: Đã xác thực
+      - button "Đăng xuất" [ref=f2e58] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=f2e9] [cursor=pointer]
+  - alert [ref=f2e26]: Xin chào, t012-admin

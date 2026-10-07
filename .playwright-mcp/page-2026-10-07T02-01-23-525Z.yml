@@ -1,0 +1,45 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e45]:
+    - complementary [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]: INVENTORY ADMIN
+        - menu [ref=e49]:
+          - menuitem "Inventory" [ref=e50] [cursor=pointer]
+          - menuitem "Dashboard" [ref=e52] [cursor=pointer]
+        - button "Đăng xuất" [ref=e54] [cursor=pointer]
+    - main [ref=e57]:
+      - heading "Inventory" [level=2] [ref=e58]
+      - alert [ref=e59]:
+        - img "info-circle" [ref=e61]
+        - generic [ref=e64]:
+          - generic [ref=e65]: Đối chiếu lịch sử tồn kho sau khi quay lại Inventory
+          - generic [ref=e66]: Nếu đã rời trang khi một thao tác đang chờ, hãy kiểm tra lịch sử trước khi nhập hoặc xuất lại.
+      - region "Danh sách tồn kho" [ref=e67]:
+        - generic [ref=e69]:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - table:
+                    - rowgroup:
+                      - row "Tên sản phẩm SKU Trạng thái Tồn hiện tại Thao tác":
+                        - columnheader "Tên sản phẩm"
+                        - columnheader "SKU"
+                        - columnheader "Trạng thái"
+                        - columnheader "Tồn hiện tại"
+                        - columnheader "Thao tác"
+                    - rowgroup:
+                      - row "Không có sản phẩm trong trang này":
+                        - cell "Không có sản phẩm trong trang này"
+  - generic [ref=e39] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e40]
+    - generic [ref=e77]:
+      - button "Open issues overlay" [ref=e78]:
+        - generic [ref=e79]:
+          - generic [aria-hidden] [ref=e80]: "1"
+          - generic [ref=e81]: "2"
+        - generic [ref=e82]:
+          - text: Issue
+          - generic [aria-hidden] [ref=e83]: s
+      - button "Collapse issues badge" [ref=e84]
+  - alert [ref=e44]

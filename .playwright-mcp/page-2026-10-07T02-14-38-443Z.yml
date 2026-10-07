@@ -1,0 +1,335 @@
+- generic [ref=f2e1]:
+  - generic [ref=f2e59]:
+    - complementary [ref=f2e60]:
+      - generic [ref=f2e61]:
+        - generic [ref=f2e62]: INVENTORY ADMIN
+        - menu [ref=f2e63]:
+          - menuitem "Inventory" [ref=f2e64] [cursor=pointer]
+          - menuitem "Dashboard" [ref=f2e66] [cursor=pointer]
+        - button "Đăng xuất" [ref=f2e68] [cursor=pointer]
+    - main [ref=f2e71]:
+      - heading "Inventory" [level=2] [ref=f2e72]
+      - alert [ref=f2e73]:
+        - img "info-circle" [ref=f2e75]
+        - generic [ref=f2e78]:
+          - generic [ref=f2e79]: Đối chiếu lịch sử tồn kho sau khi quay lại Inventory
+          - generic [ref=f2e80]: Nếu đã rời trang khi một thao tác đang chờ, hãy kiểm tra lịch sử trước khi nhập hoặc xuất lại.
+      - region "Danh sách tồn kho" [ref=f2e81]:
+        - generic [ref=f2e84]:
+          - table [ref=f2e88]:
+            - rowgroup [ref=f2e89]:
+              - row [ref=f2e90]:
+                - columnheader "Tên sản phẩm" [ref=f2e91]
+                - columnheader "SKU" [ref=f2e92]
+                - columnheader "Trạng thái" [ref=f2e93]
+                - columnheader "Tồn hiện tại" [ref=f2e94]
+                - columnheader "Thao tác" [ref=f2e95]
+            - rowgroup [ref=f2e96]:
+              - row [ref=f2e492]:
+                - cell "Essential Monitor Arm" [ref=f2e493]
+                - cell "DEMO-0009" [ref=f2e494]
+                - cell "ACTIVE" [ref=f2e495]
+                - cell "5" [ref=f2e497]
+                - cell [ref=f2e498]:
+                  - button "Inventory" [ref=f2e499] [cursor=pointer]
+              - row [ref=f2e501]:
+                - cell "VERIFY-NOW-EXISTS" [ref=f2e502]
+                - cell "VERIFY-NOW-EXISTS" [ref=f2e503]
+                - cell "ACTIVE" [ref=f2e504]
+                - cell "2" [ref=f2e506]
+                - cell [ref=f2e507]:
+                  - button "Inventory" [ref=f2e508] [cursor=pointer]
+              - row [ref=f2e510]:
+                - cell "Essential Microphone" [ref=f2e511]
+                - cell "DEMO-0018" [ref=f2e512]
+                - cell "ACTIVE" [ref=f2e513]
+                - cell "0" [ref=f2e515]
+                - cell [ref=f2e516]:
+                  - button "Inventory" [ref=f2e517] [cursor=pointer]
+              - row [ref=f2e519]:
+                - cell "VERIFY-FAULT-result" [ref=f2e520]
+                - cell "VERIFY-FAULT-result" [ref=f2e521]
+                - cell "ACTIVE" [ref=f2e522]
+                - cell "1" [ref=f2e524]
+                - cell [ref=f2e525]:
+                  - button "Inventory" [ref=f2e526] [cursor=pointer]
+              - row [ref=f2e528]:
+                - cell "Compact Power Bank" [ref=f2e529]
+                - cell "DEMO-0027" [ref=f2e530]
+                - cell "ACTIVE" [ref=f2e531]
+                - cell "0" [ref=f2e533]
+                - cell [ref=f2e534]:
+                  - button "Inventory" [ref=f2e535] [cursor=pointer]
+              - row [ref=f2e537]:
+                - cell "Compact Laptop Stand" [ref=f2e538]
+                - cell "DEMO-0024" [ref=f2e539]
+                - cell "ACTIVE" [ref=f2e540]
+                - cell "0" [ref=f2e542]
+                - cell [ref=f2e543]:
+                  - button "Inventory" [ref=f2e544] [cursor=pointer]
+              - row [ref=f2e546]:
+                - cell "Essential Router" [ref=f2e547]
+                - cell "DEMO-0019" [ref=f2e548]
+                - cell "ACTIVE" [ref=f2e549]
+                - cell "0" [ref=f2e551]
+                - cell [ref=f2e552]:
+                  - button "Inventory" [ref=f2e553] [cursor=pointer]
+              - row [ref=f2e555]:
+                - cell "Essential External SSD" [ref=f2e556]
+                - cell "DEMO-0008" [ref=f2e557]
+                - cell "ACTIVE" [ref=f2e558]
+                - cell "0" [ref=f2e560]
+                - cell [ref=f2e561]:
+                  - button "Inventory" [ref=f2e562] [cursor=pointer]
+              - row [ref=f2e564]:
+                - cell "Compact Webcam" [ref=f2e565]
+                - cell "DEMO-0025" [ref=f2e566]
+                - cell "ACTIVE" [ref=f2e567]
+                - cell "0" [ref=f2e569]
+                - cell [ref=f2e570]:
+                  - button "Inventory" [ref=f2e571] [cursor=pointer]
+              - row [ref=f2e573]:
+                - cell "Compact Desk Lamp" [ref=f2e574]
+                - cell "DEMO-0030" [ref=f2e575]
+                - cell "ACTIVE" [ref=f2e576]
+                - cell "0" [ref=f2e578]
+                - cell [ref=f2e579]:
+                  - button "Inventory" [ref=f2e580] [cursor=pointer]
+              - row [ref=f2e582]:
+                - cell "Essential Ethernet Adapter" [ref=f2e583]
+                - cell "DEMO-0014" [ref=f2e584]
+                - cell "ACTIVE" [ref=f2e585]
+                - cell "0" [ref=f2e587]
+                - cell [ref=f2e588]:
+                  - button "Inventory" [ref=f2e589] [cursor=pointer]
+              - row [ref=f2e591]:
+                - cell "Essential Desk Lamp" [ref=f2e592]
+                - cell "DEMO-0010" [ref=f2e593]
+                - cell "ACTIVE" [ref=f2e594]
+                - cell "0" [ref=f2e596]
+                - cell [ref=f2e597]:
+                  - button "Inventory" [ref=f2e598] [cursor=pointer]
+              - row [ref=f2e600]:
+                - cell "VERIFY-FAULT-movement" [ref=f2e601]
+                - cell "VERIFY-FAULT-movement" [ref=f2e602]
+                - cell "ACTIVE" [ref=f2e603]
+                - cell "1" [ref=f2e605]
+                - cell [ref=f2e606]:
+                  - button "Inventory" [ref=f2e607] [cursor=pointer]
+              - row [ref=f2e609]:
+                - cell "VERIFY-FAULT-commit" [ref=f2e610]
+                - cell "VERIFY-FAULT-commit" [ref=f2e611]
+                - cell "ACTIVE" [ref=f2e612]
+                - cell "1" [ref=f2e614]
+                - cell [ref=f2e615]:
+                  - button "Inventory" [ref=f2e616] [cursor=pointer]
+              - row [ref=f2e618]:
+                - cell "Essential Wireless Mouse" [ref=f2e619]
+                - cell "DEMO-0001" [ref=f2e620]
+                - cell "ACTIVE" [ref=f2e621]
+                - cell "0" [ref=f2e623]
+                - cell [ref=f2e624]:
+                  - button "Inventory" [ref=f2e625] [cursor=pointer]
+              - row [ref=f2e627]:
+                - cell "Essential Phone Stand" [ref=f2e628]
+                - cell "DEMO-0017" [ref=f2e629]
+                - cell "ACTIVE" [ref=f2e630]
+                - cell "0" [ref=f2e632]
+                - cell [ref=f2e633]:
+                  - button "Inventory" [ref=f2e634] [cursor=pointer]
+              - row [ref=f2e636]:
+                - cell "Renamed current product" [ref=f2e637]
+                - cell "VERIFY-ISSUE-RENAMED" [ref=f2e638]
+                - cell "INACTIVE" [ref=f2e639]
+                - cell "10" [ref=f2e641]
+                - cell [ref=f2e642]:
+                  - button "Inventory" [ref=f2e643] [cursor=pointer]
+              - row [ref=f2e645]:
+                - cell "Concurrency" [ref=f2e646]
+                - cell "VERIFY-TEN-ISSUES" [ref=f2e647]
+                - cell "ACTIVE" [ref=f2e648]
+                - cell "0" [ref=f2e650]
+                - cell [ref=f2e651]:
+                  - button "Inventory" [ref=f2e652] [cursor=pointer]
+              - row [ref=f2e654]:
+                - cell "Essential USB-C Hub" [ref=f2e655]
+                - cell "DEMO-0003" [ref=f2e656]
+                - cell "ACTIVE" [ref=f2e657]
+                - cell "1000002" [ref=f2e659]
+                - cell [ref=f2e660]:
+                  - button "Inventory" [ref=f2e661] [cursor=pointer]
+              - row [ref=f2e663]:
+                - cell "Compact Monitor Arm" [ref=f2e664]
+                - cell "DEMO-0029" [ref=f2e665]
+                - cell "ACTIVE" [ref=f2e666]
+                - cell "0" [ref=f2e668]
+                - cell [ref=f2e669]:
+                  - button "Inventory" [ref=f2e670] [cursor=pointer]
+          - list [ref=f2e277]:
+            - listitem [ref=f2e278]: Tổng 45 sản phẩm
+            - listitem "Trang Trước" [ref=f2e279]:
+              - button [disabled] [ref=f2e280]:
+                - img "left" [ref=f2e281]
+            - listitem "1" [ref=f2e284] [cursor=pointer]
+            - listitem "2" [ref=f2e286] [cursor=pointer]
+            - listitem "3" [ref=f2e288] [cursor=pointer]
+            - listitem "Trang Kế" [ref=f2e290] [cursor=pointer]:
+              - button [ref=f2e291]:
+                - img "right" [ref=f2e292]
+            - listitem [ref=f2e295]:
+              - generic [ref=f2e296]:
+                - generic "20 / trang" [ref=f2e297]:
+                  - text: 20 / trang
+                  - combobox "kích thước trang" [ref=f2e298]
+                - img "down" [ref=f2e300]
+  - generic [ref=f2e8] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f2e9]
+    - generic [ref=f2e303]:
+      - button "Open issues overlay" [ref=f2e304]:
+        - generic [ref=f2e305]:
+          - generic [aria-hidden] [ref=f2e306]: "0"
+          - generic [ref=f2e307]: "1"
+        - generic [ref=f2e308]: Issue
+      - button "Collapse issues badge" [ref=f2e309]
+  - alert [ref=f2e26]
+  - dialog "Essential Monitor Arm" [ref=f2e673]:
+    - generic [ref=f2e675]:
+      - button "Đóng" [ref=f2e676] [cursor=pointer]:
+        - img "close" [ref=f2e677]
+      - generic [ref=f2e680]: Essential Monitor Arm
+    - generic [ref=f2e681]:
+      - table [ref=f2e684]:
+        - rowgroup [ref=f2e685]:
+          - row [ref=f2e686]:
+            - 'cell "SKU : DEMO-0009" [ref=f2e687]':
+              - generic [ref=f2e688]:
+                - generic [ref=f2e689]: "SKU :"
+                - generic [ref=f2e690]: DEMO-0009
+          - row [ref=f2e691]:
+            - 'cell "Trạng thái : ACTIVE" [ref=f2e692]':
+              - generic [ref=f2e693]:
+                - generic [ref=f2e694]: "Trạng thái :"
+                - generic [ref=f2e695]: ACTIVE
+      - region "Tồn kho hiện tại" [ref=f2e696]:
+        - heading "Tồn kho hiện tại" [level=4] [ref=f2e697]
+        - table [ref=f2e700]:
+          - rowgroup [ref=f2e701]:
+            - row [ref=f2e702]:
+              - 'cell "Tồn hiện tại : 5" [ref=f2e703]':
+                - generic [ref=f2e704]:
+                  - generic [ref=f2e705]: "Tồn hiện tại :"
+                  - generic [ref=f2e706]: "5"
+            - row [ref=f2e707]:
+              - 'cell "Tên hiện tại : Essential Monitor Arm" [ref=f2e708]':
+                - generic [ref=f2e709]:
+                  - generic [ref=f2e710]: "Tên hiện tại :"
+                  - generic [ref=f2e711]: Essential Monitor Arm
+            - row [ref=f2e712]:
+              - 'cell "Trạng thái hiện tại : ACTIVE" [ref=f2e713]':
+                - generic [ref=f2e714]:
+                  - generic [ref=f2e715]: "Trạng thái hiện tại :"
+                  - generic [ref=f2e716]: ACTIVE
+      - region "Lịch sử tồn kho" [ref=f2e717]:
+        - heading "Lịch sử tồn kho" [level=4] [ref=f2e718]
+        - generic [ref=f2e721]:
+          - table [ref=f2e725]:
+            - rowgroup [ref=f2e726]:
+              - row [ref=f2e727]:
+                - columnheader "Loại" [ref=f2e728]
+                - columnheader "Số lượng" [ref=f2e729]
+                - columnheader "Tồn trước" [ref=f2e730]
+                - columnheader "Tồn sau" [ref=f2e731]
+                - columnheader "Người thực hiện (UUID)" [ref=f2e732]
+                - columnheader "Lý do" [ref=f2e733]
+                - columnheader "Thời gian (UTC)" [ref=f2e734]
+            - rowgroup [ref=f2e735]:
+              - row [ref=f2e736]:
+                - cell "ISSUE" [ref=f2e737]
+                - cell "1" [ref=f2e738]
+                - cell "6" [ref=f2e739]
+                - cell "5" [ref=f2e740]
+                - cell "f4550cc2-6a81-442a-9428-dbf8efe271ae" [ref=f2e741]
+                - cell "T030 normal issue one" [ref=f2e742]
+                - cell "2026-10-07T02:01:49.008Z" [ref=f2e743]
+              - row [ref=f2e744]:
+                - cell "RECEIPT" [ref=f2e745]
+                - cell "1" [ref=f2e746]
+                - cell "5" [ref=f2e747]
+                - cell "6" [ref=f2e748]
+                - cell "f4550cc2-6a81-442a-9428-dbf8efe271ae" [ref=f2e749]
+                - cell "T030 normal receipt one" [ref=f2e750]
+                - cell "2026-10-07T02:01:34.785Z" [ref=f2e751]
+              - row [ref=f2e752]:
+                - cell "RECEIPT" [ref=f2e753]
+                - cell "1" [ref=f2e754]
+                - cell "4" [ref=f2e755]
+                - cell "5" [ref=f2e756]
+                - cell "f4550cc2-6a81-442a-9428-dbf8efe271ae" [ref=f2e757]
+                - cell "T027 success refresh fail" [ref=f2e758]
+                - cell "2026-10-06T17:56:00.093Z" [ref=f2e759]
+              - row [ref=f2e760]:
+                - cell "RECEIPT" [ref=f2e761]
+                - cell "1" [ref=f2e762]
+                - cell "3" [ref=f2e763]
+                - cell "4" [ref=f2e764]
+                - cell "f4550cc2-6a81-442a-9428-dbf8efe271ae" [ref=f2e765]
+                - cell "T027 native sending reload" [ref=f2e766]
+                - cell "2026-10-06T17:55:00.376Z" [ref=f2e767]
+              - row [ref=f2e768]:
+                - cell "RECEIPT" [ref=f2e769]
+                - cell "2" [ref=f2e770]
+                - cell "1" [ref=f2e771]
+                - cell "3" [ref=f2e772]
+                - cell "f4550cc2-6a81-442a-9428-dbf8efe271ae" [ref=f2e773]
+                - cell "T025 backend expiry fixture" [ref=f2e774]
+                - cell "2026-10-06T16:55:57.158Z" [ref=f2e775]
+              - row [ref=f2e776]:
+                - cell "RECEIPT" [ref=f2e777]
+                - cell "1" [ref=f2e778]
+                - cell "0" [ref=f2e779]
+                - cell "1" [ref=f2e780]
+                - cell "f4550cc2-6a81-442a-9428-dbf8efe271ae" [ref=f2e781]
+                - cell "T025 backend expiry fixture" [ref=f2e782]
+                - cell "2026-10-06T16:55:57.115Z" [ref=f2e783]
+          - list [ref=f2e784]:
+            - listitem [ref=f2e785]: Tổng 6 giao dịch
+            - listitem "Trang Trước" [ref=f2e786]:
+              - button [disabled] [ref=f2e787]:
+                - img "left" [ref=f2e788]
+            - listitem "1" [ref=f2e791] [cursor=pointer]
+            - listitem "Trang Kế" [ref=f2e793]:
+              - button [disabled] [ref=f2e794]:
+                - img "right" [ref=f2e795]
+            - listitem [ref=f2e798]:
+              - generic [ref=f2e799]:
+                - generic "20 / trang" [ref=f2e800]:
+                  - text: 20 / trang
+                  - combobox "kích thước trang" [ref=f2e801]
+                - img "down" [ref=f2e803]
+      - region "Nhập hoặc xuất tồn kho" [ref=f2e806]:
+        - heading "Nhập / xuất tồn kho" [level=4] [ref=f2e807]
+        - generic [ref=f2e808]:
+          - generic [ref=f2e810]:
+            - generic "Loại giao dịch" [ref=f2e812]: "* Loại giao dịch"
+            - generic [ref=f2e816] [cursor=pointer]:
+              - generic "Nhập (RECEIPT)" [ref=f2e817]:
+                - text: Nhập (RECEIPT)
+                - combobox "* Loại giao dịch" [ref=f2e818]
+              - img "down" [ref=f2e820]
+          - generic [ref=f2e824]:
+            - generic "Số lượng" [ref=f2e826]
+            - generic [ref=f2e827]:
+              - generic [ref=f2e830]:
+                - spinbutton "Số lượng" [invalid] [ref=f2e831]: "0"
+                - generic:
+                  - button "Increase Value" [ref=f2e832] [cursor=pointer]:
+                    - img "up" [ref=f2e833]
+                  - button "Decrease Value" [ref=f2e836] [cursor=pointer]:
+                    - img "down" [ref=f2e837]
+              - generic [ref=f2e850]: Nhập số nguyên từ 1 đến 1.000.000.
+          - generic [ref=f2e841]:
+            - generic "Lý do" [ref=f2e843]
+            - generic [ref=f2e844]:
+              - textbox "Lý do" [invalid] [ref=f2e847]
+              - generic [ref=f2e853]: Lý do sau khi bỏ khoảng trắng đầu/cuối phải có từ 1 đến 500 ký tự Unicode.
+          - button "Gửi giao dịch" [active] [ref=f2e848] [cursor=pointer]

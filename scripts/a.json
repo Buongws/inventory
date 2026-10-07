@@ -1,0 +1,207 @@
+{
+  "items": [
+    {
+      "productId": "04c874d8-7728-4b2f-9470-75bf5a29f0d3",
+      "onHandQty": 0,
+      "product": {
+        "id": "04c874d8-7728-4b2f-9470-75bf5a29f0d3",
+        "sku": "DEMO-0009",
+        "name": "Essential Monitor Arm",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "0b63e8aa-bc07-40d6-b74d-426622f70f80",
+      "onHandQty": 2,
+      "product": {
+        "id": "0b63e8aa-bc07-40d6-b74d-426622f70f80",
+        "sku": "VERIFY-NOW-EXISTS",
+        "name": "VERIFY-NOW-EXISTS",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "125f13a7-6d98-46de-9929-677685d885b7",
+      "onHandQty": 0,
+      "product": {
+        "id": "125f13a7-6d98-46de-9929-677685d885b7",
+        "sku": "DEMO-0018",
+        "name": "Essential Microphone",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "15e210ce-a619-48cd-8ca7-be7d3e38e117",
+      "onHandQty": 1,
+      "product": {
+        "id": "15e210ce-a619-48cd-8ca7-be7d3e38e117",
+        "sku": "VERIFY-FAULT-result",
+        "name": "VERIFY-FAULT-result",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "1e7ef3c5-863e-419e-90ad-c1b13adca8a0",
+      "onHandQty": 0,
+      "product": {
+        "id": "1e7ef3c5-863e-419e-90ad-c1b13adca8a0",
+        "sku": "DEMO-0027",
+        "name": "Compact Power Bank",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "213505b3-3981-4365-956c-f60957ef5ef5",
+      "onHandQty": 0,
+      "product": {
+        "id": "213505b3-3981-4365-956c-f60957ef5ef5",
+        "sku": "DEMO-0024",
+        "name": "Compact Laptop Stand",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "232fe8a5-f100-4cef-94db-e3ebe2f5255e",
+      "onHandQty": 0,
+      "product": {
+        "id": "232fe8a5-f100-4cef-94db-e3ebe2f5255e",
+        "sku": "DEMO-0019",
+        "name": "Essential Router",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "247091f1-70eb-4112-a6ac-318abcd66f48",
+      "onHandQty": 0,
+      "product": {
+        "id": "247091f1-70eb-4112-a6ac-318abcd66f48",
+        "sku": "DEMO-0008",
+        "name": "Essential External SSD",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "275eceb2-372c-4f50-9636-45c0706fa47f",
+      "onHandQty": 0,
+      "product": {
+        "id": "275eceb2-372c-4f50-9636-45c0706fa47f",
+        "sku": "DEMO-0025",
+        "name": "Compact Webcam",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "2c88209f-5f33-4ba7-8e92-47cf527b2afe",
+      "onHandQty": 0,
+      "product": {
+        "id": "2c88209f-5f33-4ba7-8e92-47cf527b2afe",
+        "sku": "DEMO-0030",
+        "name": "Compact Desk Lamp",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "34bbb031-0c6f-46c9-a3e2-358567dd5bc0",
+      "onHandQty": 0,
+      "product": {
+        "id": "34bbb031-0c6f-46c9-a3e2-358567dd5bc0",
+        "sku": "DEMO-0014",
+        "name": "Essential Ethernet Adapter",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "37183a42-9b11-4cd9-9714-545de61b6e40",
+      "onHandQty": 0,
+      "product": {
+        "id": "37183a42-9b11-4cd9-9714-545de61b6e40",
+        "sku": "DEMO-0010",
+        "name": "Essential Desk Lamp",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "3d5efce0-22cb-48d4-aaae-7327a17142b7",
+      "onHandQty": 1,
+      "product": {
+        "id": "3d5efce0-22cb-48d4-aaae-7327a17142b7",
+        "sku": "VERIFY-FAULT-movement",
+        "name": "VERIFY-FAULT-movement",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "3f7f8298-4279-4ec1-b027-6e677dbf5246",
+      "onHandQty": 1,
+      "product": {
+        "id": "3f7f8298-4279-4ec1-b027-6e677dbf5246",
+        "sku": "VERIFY-FAULT-commit",
+        "name": "VERIFY-FAULT-commit",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "42d233d7-2253-4ac1-9aca-3ead16ea8edb",
+      "onHandQty": 0,
+      "product": {
+        "id": "42d233d7-2253-4ac1-9aca-3ead16ea8edb",
+        "sku": "DEMO-0001",
+        "name": "Essential Wireless Mouse",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "4961344d-0bde-4491-959b-4006c7ea1f30",
+      "onHandQty": 0,
+      "product": {
+        "id": "4961344d-0bde-4491-959b-4006c7ea1f30",
+        "sku": "DEMO-0017",
+        "name": "Essential Phone Stand",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "56564e2c-6de3-4eb6-8d83-ff5e9382e936",
+      "onHandQty": 0,
+      "product": {
+        "id": "56564e2c-6de3-4eb6-8d83-ff5e9382e936",
+        "sku": "VERIFY-ISSUE-RENAMED",
+        "name": "Renamed current product",
+        "status": "INACTIVE"
+      }
+    },
+    {
+      "productId": "57a93a1b-da8c-4387-88a7-629b2d5ee6e7",
+      "onHandQty": 0,
+      "product": {
+        "id": "57a93a1b-da8c-4387-88a7-629b2d5ee6e7",
+        "sku": "VERIFY-TEN-ISSUES",
+        "name": "Concurrency",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "6c51b44d-75d5-4b6a-a2a2-ef819725b8ea",
+      "onHandQty": 1000001,
+      "product": {
+        "id": "6c51b44d-75d5-4b6a-a2a2-ef819725b8ea",
+        "sku": "DEMO-0003",
+        "name": "Essential USB-C Hub",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "productId": "7af458f8-0da5-4b70-bbe2-36e49843aac0",
+      "onHandQty": 0,
+      "product": {
+        "id": "7af458f8-0da5-4b70-bbe2-36e49843aac0",
+        "sku": "DEMO-0029",
+        "name": "Compact Monitor Arm",
+        "status": "ACTIVE"
+      }
+    }
+  ],
+  "page": 1,
+  "limit": 20,
+  "total": 45
+}

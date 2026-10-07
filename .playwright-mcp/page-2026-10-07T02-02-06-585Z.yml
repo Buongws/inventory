@@ -1,0 +1,33 @@
+- generic [active] [ref=e1]:
+  - main [ref=e714]:
+    - generic [ref=e715]:
+      - paragraph [ref=e716]: INVENTORY API
+      - heading "Chào mừng trở lại" [level=1] [ref=e717]
+      - paragraph [ref=e718]: Đăng nhập để vào trang quản lý.
+      - generic [ref=e719]:
+        - generic [ref=e720]:
+          - text: Email
+          - textbox "Email" [ref=e721]
+        - generic [ref=e722]:
+          - text: Mật khẩu
+          - textbox "Mật khẩu" [ref=e723]
+        - button "Đăng nhập" [ref=e724] [cursor=pointer]
+      - generic [ref=e725]: hoặc
+      - link "Tiếp tục với Google" [ref=e727] [cursor=pointer]:
+        - /url: /api/v1/auth/google/start
+      - paragraph [ref=e728]:
+        - text: Chưa có tài khoản?
+        - link "Đăng ký" [ref=e729] [cursor=pointer]:
+          - /url: /register
+  - generic [ref=e39] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e40]
+    - generic [ref=e77]:
+      - button "Open issues overlay" [ref=e78]:
+        - generic [ref=e79]:
+          - generic [aria-hidden] [ref=e80]: "1"
+          - generic [ref=e81]: "2"
+        - generic [ref=e82]:
+          - text: Issue
+          - generic [aria-hidden] [ref=e83]: s
+      - button "Collapse issues badge" [ref=e84]
+  - alert [ref=e44]: Chào mừng trở lại

@@ -1,0 +1,194 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e59]:
+    - complementary [ref=f2e60]:
+      - generic [ref=f2e61]:
+        - generic [ref=f2e62]: INVENTORY ADMIN
+        - menu [ref=f2e63]:
+          - menuitem "Inventory" [ref=f2e64] [cursor=pointer]
+          - menuitem "Dashboard" [ref=f2e66] [cursor=pointer]
+        - button "Đăng xuất" [ref=f2e68] [cursor=pointer]
+    - main [ref=f2e71]:
+      - heading "Inventory" [level=2] [ref=f2e72]
+      - alert [ref=f2e73]:
+        - img "info-circle" [ref=f2e75]
+        - generic [ref=f2e78]:
+          - generic [ref=f2e79]: Đối chiếu lịch sử tồn kho sau khi quay lại Inventory
+          - generic [ref=f2e80]: Nếu đã rời trang khi một thao tác đang chờ, hãy kiểm tra lịch sử trước khi nhập hoặc xuất lại.
+      - region "Danh sách tồn kho" [ref=f2e81]:
+        - generic [ref=f2e84]:
+          - table [ref=f2e88]:
+            - rowgroup [ref=f2e89]:
+              - row [ref=f2e90]:
+                - columnheader "Tên sản phẩm" [ref=f2e91]
+                - columnheader "SKU" [ref=f2e92]
+                - columnheader "Trạng thái" [ref=f2e93]
+                - columnheader "Tồn hiện tại" [ref=f2e94]
+                - columnheader "Thao tác" [ref=f2e95]
+            - rowgroup [ref=f2e96]:
+              - row [ref=f2e1190]:
+                - cell "Essential Monitor Arm" [ref=f2e1191]
+                - cell "DEMO-0009" [ref=f2e1192]
+                - cell "ACTIVE" [ref=f2e1193]
+                - cell "5" [ref=f2e1195]
+                - cell [ref=f2e1196]:
+                  - button "Inventory" [ref=f2e1197] [cursor=pointer]
+              - row [ref=f2e1199]:
+                - cell "VERIFY-NOW-EXISTS" [ref=f2e1200]
+                - cell "VERIFY-NOW-EXISTS" [ref=f2e1201]
+                - cell "ACTIVE" [ref=f2e1202]
+                - cell "2" [ref=f2e1204]
+                - cell [ref=f2e1205]:
+                  - button "Inventory" [ref=f2e1206] [cursor=pointer]
+              - row [ref=f2e1208]:
+                - cell "Essential Microphone" [ref=f2e1209]
+                - cell "DEMO-0018" [ref=f2e1210]
+                - cell "ACTIVE" [ref=f2e1211]
+                - cell "0" [ref=f2e1213]
+                - cell [ref=f2e1214]:
+                  - button "Inventory" [ref=f2e1215] [cursor=pointer]
+              - row [ref=f2e1217]:
+                - cell "VERIFY-FAULT-result" [ref=f2e1218]
+                - cell "VERIFY-FAULT-result" [ref=f2e1219]
+                - cell "ACTIVE" [ref=f2e1220]
+                - cell "1" [ref=f2e1222]
+                - cell [ref=f2e1223]:
+                  - button "Inventory" [ref=f2e1224] [cursor=pointer]
+              - row [ref=f2e1226]:
+                - cell "Compact Power Bank" [ref=f2e1227]
+                - cell "DEMO-0027" [ref=f2e1228]
+                - cell "ACTIVE" [ref=f2e1229]
+                - cell "0" [ref=f2e1231]
+                - cell [ref=f2e1232]:
+                  - button "Inventory" [ref=f2e1233] [cursor=pointer]
+              - row [ref=f2e1235]:
+                - cell "Compact Laptop Stand" [ref=f2e1236]
+                - cell "DEMO-0024" [ref=f2e1237]
+                - cell "ACTIVE" [ref=f2e1238]
+                - cell "0" [ref=f2e1240]
+                - cell [ref=f2e1241]:
+                  - button "Inventory" [ref=f2e1242] [cursor=pointer]
+              - row [ref=f2e1244]:
+                - cell "Essential Router" [ref=f2e1245]
+                - cell "DEMO-0019" [ref=f2e1246]
+                - cell "ACTIVE" [ref=f2e1247]
+                - cell "0" [ref=f2e1249]
+                - cell [ref=f2e1250]:
+                  - button "Inventory" [ref=f2e1251] [cursor=pointer]
+              - row [ref=f2e1253]:
+                - cell "Essential External SSD" [ref=f2e1254]
+                - cell "DEMO-0008" [ref=f2e1255]
+                - cell "ACTIVE" [ref=f2e1256]
+                - cell "0" [ref=f2e1258]
+                - cell [ref=f2e1259]:
+                  - button "Inventory" [ref=f2e1260] [cursor=pointer]
+              - row [ref=f2e1262]:
+                - cell "Compact Webcam" [ref=f2e1263]
+                - cell "DEMO-0025" [ref=f2e1264]
+                - cell "ACTIVE" [ref=f2e1265]
+                - cell "0" [ref=f2e1267]
+                - cell [ref=f2e1268]:
+                  - button "Inventory" [ref=f2e1269] [cursor=pointer]
+              - row [ref=f2e1271]:
+                - cell "Compact Desk Lamp" [ref=f2e1272]
+                - cell "DEMO-0030" [ref=f2e1273]
+                - cell "ACTIVE" [ref=f2e1274]
+                - cell "0" [ref=f2e1276]
+                - cell [ref=f2e1277]:
+                  - button "Inventory" [ref=f2e1278] [cursor=pointer]
+              - row [ref=f2e1280]:
+                - cell "Essential Ethernet Adapter" [ref=f2e1281]
+                - cell "DEMO-0014" [ref=f2e1282]
+                - cell "ACTIVE" [ref=f2e1283]
+                - cell "0" [ref=f2e1285]
+                - cell [ref=f2e1286]:
+                  - button "Inventory" [ref=f2e1287] [cursor=pointer]
+              - row [ref=f2e1289]:
+                - cell "Essential Desk Lamp" [ref=f2e1290]
+                - cell "DEMO-0010" [ref=f2e1291]
+                - cell "ACTIVE" [ref=f2e1292]
+                - cell "0" [ref=f2e1294]
+                - cell [ref=f2e1295]:
+                  - button "Inventory" [ref=f2e1296] [cursor=pointer]
+              - row [ref=f2e1298]:
+                - cell "VERIFY-FAULT-movement" [ref=f2e1299]
+                - cell "VERIFY-FAULT-movement" [ref=f2e1300]
+                - cell "ACTIVE" [ref=f2e1301]
+                - cell "1" [ref=f2e1303]
+                - cell [ref=f2e1304]:
+                  - button "Inventory" [ref=f2e1305] [cursor=pointer]
+              - row [ref=f2e1307]:
+                - cell "VERIFY-FAULT-commit" [ref=f2e1308]
+                - cell "VERIFY-FAULT-commit" [ref=f2e1309]
+                - cell "ACTIVE" [ref=f2e1310]
+                - cell "1" [ref=f2e1312]
+                - cell [ref=f2e1313]:
+                  - button "Inventory" [ref=f2e1314] [cursor=pointer]
+              - row [ref=f2e1316]:
+                - cell "Essential Wireless Mouse" [ref=f2e1317]
+                - cell "DEMO-0001" [ref=f2e1318]
+                - cell "ACTIVE" [ref=f2e1319]
+                - cell "0" [ref=f2e1321]
+                - cell [ref=f2e1322]:
+                  - button "Inventory" [ref=f2e1323] [cursor=pointer]
+              - row [ref=f2e1325]:
+                - cell "Essential Phone Stand" [ref=f2e1326]
+                - cell "DEMO-0017" [ref=f2e1327]
+                - cell "ACTIVE" [ref=f2e1328]
+                - cell "0" [ref=f2e1330]
+                - cell [ref=f2e1331]:
+                  - button "Inventory" [ref=f2e1332] [cursor=pointer]
+              - row [ref=f2e1334]:
+                - cell "Renamed current product" [ref=f2e1335]
+                - cell "VERIFY-ISSUE-RENAMED" [ref=f2e1336]
+                - cell "INACTIVE" [ref=f2e1337]
+                - cell "10" [ref=f2e1339]
+                - cell [ref=f2e1340]:
+                  - button "Inventory" [ref=f2e1341] [cursor=pointer]
+              - row [ref=f2e1343]:
+                - cell "Concurrency" [ref=f2e1344]
+                - cell "VERIFY-TEN-ISSUES" [ref=f2e1345]
+                - cell "ACTIVE" [ref=f2e1346]
+                - cell "0" [ref=f2e1348]
+                - cell [ref=f2e1349]:
+                  - button "Inventory" [ref=f2e1350] [cursor=pointer]
+              - row [ref=f2e1352]:
+                - cell "Essential USB-C Hub" [ref=f2e1353]
+                - cell "DEMO-0003" [ref=f2e1354]
+                - cell "ACTIVE" [ref=f2e1355]
+                - cell "1000002" [ref=f2e1357]
+                - cell [ref=f2e1358]:
+                  - button "Inventory" [ref=f2e1359] [cursor=pointer]
+              - row [ref=f2e1361]:
+                - cell "Compact Monitor Arm" [ref=f2e1362]
+                - cell "DEMO-0029" [ref=f2e1363]
+                - cell "ACTIVE" [ref=f2e1364]
+                - cell "0" [ref=f2e1366]
+                - cell [ref=f2e1367]:
+                  - button "Inventory" [ref=f2e1368] [cursor=pointer]
+          - list [ref=f2e277]:
+            - listitem [ref=f2e278]: Tổng 45 sản phẩm
+            - listitem "Trang Trước" [ref=f2e279]:
+              - button [disabled] [ref=f2e280]:
+                - img "left" [ref=f2e281]
+            - listitem "1" [ref=f2e284] [cursor=pointer]
+            - listitem "2" [ref=f2e286] [cursor=pointer]
+            - listitem "3" [ref=f2e288] [cursor=pointer]
+            - listitem "Trang Kế" [ref=f2e290] [cursor=pointer]:
+              - button [ref=f2e291]:
+                - img "right" [ref=f2e292]
+            - listitem [ref=f2e295]:
+              - generic [ref=f2e296]:
+                - generic "20 / trang" [ref=f2e297]:
+                  - text: 20 / trang
+                  - combobox "kích thước trang" [ref=f2e298]
+                - img "down" [ref=f2e300]
+  - generic [ref=f2e8] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f2e9]
+    - generic [ref=f2e303]:
+      - button "Open issues overlay" [ref=f2e304]:
+        - generic [ref=f2e305]:
+          - generic [aria-hidden] [ref=f2e306]: "0"
+          - generic [ref=f2e307]: "1"
+        - generic [ref=f2e308]: Issue
+      - button "Collapse issues badge" [ref=f2e309]
+  - alert [ref=f2e26]

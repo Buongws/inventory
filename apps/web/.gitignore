@@ -1,0 +1,24 @@
+# dependencies
+node_modules/
+
+# build output
+build/
+dist/
+.next/
+out/
+
+# local environment
+.env
+.env.*
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editor/system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

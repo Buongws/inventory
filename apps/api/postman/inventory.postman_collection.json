@@ -1,0 +1,917 @@
+{
+  "info": {
+    "name": "Inventory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student@example.com\",\n  \"password\": \"Dinhcongmanh1@\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/register"
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student@example.com\",\n  \"password\": \"Dinhcongmanh1@\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/login"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.environment.set('accessToken', pm.response.json().accessToken);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/auth/me"
+          }
+        },
+        {
+          "name": "Refresh",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/refresh"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.environment.set('accessToken', pm.response.json().accessToken);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/logout"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Create product (admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"usb-c-cable-1m\",\n  \"name\": \"USB-C cable 1m\",\n  \"description\": \"Braided cable\",\n  \"priceVnd\": \"129000\",\n  \"imageUrl\": \"https://images.example.com/cable.jpg\"\n}"
+            },
+            "url": "{{baseUrl}}/products"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "pm.environment.set('productId', pm.response.json().product.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List products",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/products?page=1&limit=20&search=USB-C"
+          }
+        },
+        {
+          "name": "Get product",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/products/{{productId}}"
+          }
+        },
+        {
+          "name": "Update product (admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"USB-C cable 1m \u2014 updated\",\n  \"priceVnd\": \"139000\"\n}"
+            },
+            "url": "{{baseUrl}}/products/{{productId}}"
+          }
+        },
+        {
+          "name": "Deactivate product (admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/products/{{productId}}"
+          }
+        },
+        {
+          "name": "Duplicate SKU conflict (admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"usb-c-cable-1m\",\n  \"name\": \"Duplicate SKU example\",\n  \"priceVnd\": \"129000\"\n}"
+            },
+            "url": "{{baseUrl}}/products"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health live",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health/live"
+      }
+    },
+    {
+      "name": "Health ready",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health/ready"
+      }
+    },
+    {
+      "name": "Inventory stock (admin)",
+      "item": [
+        {
+          "name": "Stock list",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory",
+            "description": "Use isolated data. Untouched reads create no balance rows. Admin only; customerAccessToken and inactiveProductId are local placeholders."
+          }
+        },
+        {
+          "name": "Stock detail / untouched zero",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}",
+            "description": "Use isolated data. Untouched reads create no balance rows. Admin only; customerAccessToken and inactiveProductId are local placeholders."
+          }
+        },
+        {
+          "name": "Stock list page 2",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory?page=2&limit=1",
+            "description": "Use isolated data. Untouched reads create no balance rows. Admin only; customerAccessToken and inactiveProductId are local placeholders."
+          }
+        },
+        {
+          "name": "Stock inactive product",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{inactiveProductId}}",
+            "description": "Use isolated data. Untouched reads create no balance rows. Admin only; customerAccessToken and inactiveProductId are local placeholders."
+          }
+        },
+        {
+          "name": "Stock missing product",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/00000000-0000-4000-8000-000000000000",
+            "description": "Use isolated data. Untouched reads create no balance rows. Admin only; customerAccessToken and inactiveProductId are local placeholders."
+          }
+        },
+        {
+          "name": "Stock invalid UUID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/not-a-uuid",
+            "description": "Use isolated data. Untouched reads create no balance rows. Admin only; customerAccessToken and inactiveProductId are local placeholders."
+          }
+        },
+        {
+          "name": "Stock unknown query",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory?unknown=1",
+            "description": "Use isolated data. Untouched reads create no balance rows. Admin only; customerAccessToken and inactiveProductId are local placeholders."
+          }
+        },
+        {
+          "name": "Stock customer forbidden",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{customerAccessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory",
+            "description": "Use isolated data. Untouched reads create no balance rows. Admin only; customerAccessToken and inactiveProductId are local placeholders."
+          }
+        },
+        {
+          "name": "Stock unauthenticated",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/inventory",
+            "description": "Use isolated data. Untouched reads create no balance rows. Admin only; customerAccessToken and inactiveProductId are local placeholders."
+          }
+        },
+        {
+          "name": "Stock invalid token",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer invalid-token"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory",
+            "description": "Use isolated data. Untouched reads create no balance rows. Admin only; customerAccessToken and inactiveProductId are local placeholders."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory receipts and idempotency (admin)",
+      "item": [
+        {
+          "name": "Receive 10",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{receiptKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"RECEIPT\", \"quantity\": 10, \"reason\": \"Opening stock\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Manually populate an empty environment key once. Replays reuse it; never generate a fresh key for retry. Duplicate raw headers require curl/raw HTTP; add the same header twice when the client preserves occurrences. In-flight duplicate: hold original balance lock in disposable PostgreSQL, send same key, expect immediate 409 and Retry-After 1."
+          }
+        },
+        {
+          "name": "Replay receive 10",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{receiptKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"RECEIPT\", \"quantity\": 10, \"reason\": \"Opening stock\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Manually populate an empty environment key once. Replays reuse it; never generate a fresh key for retry. Duplicate raw headers require curl/raw HTTP; add the same header twice when the client preserves occurrences. In-flight duplicate: hold original balance lock in disposable PostgreSQL, send same key, expect immediate 409 and Retry-After 1."
+          }
+        },
+        {
+          "name": "Key reused conflict",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{receiptKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"RECEIPT\", \"quantity\": 11, \"reason\": \"Opening stock\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Manually populate an empty environment key once. Replays reuse it; never generate a fresh key for retry. Duplicate raw headers require curl/raw HTTP; add the same header twice when the client preserves occurrences. In-flight duplicate: hold original balance lock in disposable PostgreSQL, send same key, expect immediate 409 and Retry-After 1."
+          }
+        },
+        {
+          "name": "Receive 5 new key",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{idempotencyKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"RECEIPT\", \"quantity\": 5, \"reason\": \"Additional stock\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Manually populate an empty environment key once. Replays reuse it; never generate a fresh key for retry. Duplicate raw headers require curl/raw HTTP; add the same header twice when the client preserves occurrences. In-flight duplicate: hold original balance lock in disposable PostgreSQL, send same key, expect immediate 409 and Retry-After 1."
+          }
+        },
+        {
+          "name": "Missing key",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"RECEIPT\", \"quantity\": 1, \"reason\": \"Invalid key\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Manually populate an empty environment key once. Replays reuse it; never generate a fresh key for retry. Duplicate raw headers require curl/raw HTTP; add the same header twice when the client preserves occurrences. In-flight duplicate: hold original balance lock in disposable PostgreSQL, send same key, expect immediate 409 and Retry-After 1."
+          }
+        },
+        {
+          "name": "Invalid key",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "bad,key"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"RECEIPT\", \"quantity\": 1, \"reason\": \"Invalid key\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Manually populate an empty environment key once. Replays reuse it; never generate a fresh key for retry. Duplicate raw headers require curl/raw HTTP; add the same header twice when the client preserves occurrences. In-flight duplicate: hold original balance lock in disposable PostgreSQL, send same key, expect immediate 409 and Retry-After 1."
+          }
+        },
+        {
+          "name": "Invalid quantity string",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{retryKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"RECEIPT\", \"quantity\": \"1\", \"reason\": \"Invalid input\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Manually populate an empty environment key once. Replays reuse it; never generate a fresh key for retry. Duplicate raw headers require curl/raw HTTP; add the same header twice when the client preserves occurrences. In-flight duplicate: hold original balance lock in disposable PostgreSQL, send same key, expect immediate 409 and Retry-After 1."
+          }
+        },
+        {
+          "name": "Receive inactive product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{retryKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{inactiveProductId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"RECEIPT\", \"quantity\": 1, \"reason\": \"Inactive receipt\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Manually populate an empty environment key once. Replays reuse it; never generate a fresh key for retry. Duplicate raw headers require curl/raw HTTP; add the same header twice when the client preserves occurrences. In-flight duplicate: hold original balance lock in disposable PostgreSQL, send same key, expect immediate 409 and Retry-After 1."
+          }
+        },
+        {
+          "name": "Duplicate raw key header rejected",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{receiptKey}}"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{receiptKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"RECEIPT\", \"quantity\": 10, \"reason\": \"Opening stock\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Expected 400 INVALID_IDEMPOTENCY_KEY. Preserve both raw header occurrences; if the client merges them into a comma-separated value, that is also invalid. Never create a movement."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory issues (admin)",
+      "item": [
+        {
+          "name": "Issue 3",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{issueKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"ISSUE\", \"quantity\": 3, \"reason\": \"Issue 3\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Prepare stock 10; issue 3 -> 7, issue 8 -> cached 409, exact-stock issue 7 -> 0. Use distinct keys for distinct commands; replay reuses exactly the original body including reason. New attempt after replenishment needs a new key."
+          }
+        },
+        {
+          "name": "Replay issue 3",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{issueKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"ISSUE\", \"quantity\": 3, \"reason\": \"Issue 3\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Prepare stock 10; issue 3 -> 7, issue 8 -> cached 409, exact-stock issue 7 -> 0. Use distinct keys for distinct commands; replay reuses exactly the original body including reason. New attempt after replenishment needs a new key."
+          }
+        },
+        {
+          "name": "Insufficient issue 8 / replay after receipt",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{retryKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"ISSUE\", \"quantity\": 8, \"reason\": \"Insufficient issue 8 / replay after receipt\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Prepare stock 10; issue 3 -> 7, issue 8 -> cached 409, exact-stock issue 7 -> 0. Use distinct keys for distinct commands; replay reuses exactly the original body including reason. New attempt after replenishment needs a new key."
+          }
+        },
+        {
+          "name": "Exact-stock issue 7",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{idempotencyKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"ISSUE\", \"quantity\": 7, \"reason\": \"Exact-stock issue 7\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Prepare stock 10; issue 3 -> 7, issue 8 -> cached 409, exact-stock issue 7 -> 0. Use distinct keys for distinct commands; replay reuses exactly the original body including reason. New attempt after replenishment needs a new key."
+          }
+        },
+        {
+          "name": "Issue inactive",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{issueKey}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{inactiveProductId}}/movements",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\": \"ISSUE\", \"quantity\": 1, \"reason\": \"Issue inactive\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Prepare stock 10; issue 3 -> 7, issue 8 -> cached 409, exact-stock issue 7 -> 0. Use distinct keys for distinct commands; replay reuses exactly the original body including reason. New attempt after replenishment needs a new key."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory history (admin)",
+      "item": [
+        {
+          "name": "History newest first",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements",
+            "description": "Verify page/order and immutable movement facts. Rename/SKU edit changes current product fields only; deactivation retains history. No update/delete routes exist."
+          }
+        },
+        {
+          "name": "History page 2",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements?page=2&limit=1",
+            "description": "Verify page/order and immutable movement facts. Rename/SKU edit changes current product fields only; deactivation retains history. No update/delete routes exist."
+          }
+        },
+        {
+          "name": "History untouched",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{untouchedProductId}}/movements",
+            "description": "Verify page/order and immutable movement facts. Rename/SKU edit changes current product fields only; deactivation retains history. No update/delete routes exist."
+          }
+        },
+        {
+          "name": "History inactive/current catalog",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{inactiveProductId}}/movements",
+            "description": "Verify page/order and immutable movement facts. Rename/SKU edit changes current product fields only; deactivation retains history. No update/delete routes exist."
+          }
+        },
+        {
+          "name": "History missing",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/00000000-0000-4000-8000-000000000000/movements",
+            "description": "Verify page/order and immutable movement facts. Rename/SKU edit changes current product fields only; deactivation retains history. No update/delete routes exist."
+          }
+        },
+        {
+          "name": "Movement edit unsupported",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements/{{movementId}}",
+            "description": "Verify page/order and immutable movement facts. Rename/SKU edit changes current product fields only; deactivation retains history. No update/delete routes exist."
+          }
+        },
+        {
+          "name": "Movement delete unsupported",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/inventory/{{productId}}/movements/{{movementId}}",
+            "description": "Verify page/order and immutable movement facts. Rename/SKU edit changes current product fields only; deactivation retains history. No update/delete routes exist."
+          }
+        }
+      ]
+    }
+  ]
+}

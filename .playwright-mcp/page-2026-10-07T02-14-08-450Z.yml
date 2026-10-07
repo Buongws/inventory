@@ -1,0 +1,23 @@
+- generic [active] [ref=f2e1]:
+  - main [ref=f2e27]:
+    - generic [ref=f2e28]:
+      - paragraph [ref=f2e29]: INVENTORY API
+      - heading "Chào mừng trở lại" [level=1] [ref=f2e30]
+      - paragraph [ref=f2e31]: Đăng nhập để vào trang quản lý.
+      - generic [ref=f2e32]:
+        - generic [ref=f2e33]:
+          - text: Email
+          - textbox "Email" [ref=f2e34]
+        - generic [ref=f2e35]:
+          - text: Mật khẩu
+          - textbox "Mật khẩu" [ref=f2e36]
+        - button "Đăng nhập" [ref=f2e37] [cursor=pointer]
+      - generic [ref=f2e38]: hoặc
+      - link "Tiếp tục với Google" [ref=f2e40] [cursor=pointer]:
+        - /url: /api/v1/auth/google/start
+      - paragraph [ref=f2e41]:
+        - text: Chưa có tài khoản?
+        - link "Đăng ký" [ref=f2e42] [cursor=pointer]:
+          - /url: /register
+  - button "Open Next.js Dev Tools" [ref=f2e9] [cursor=pointer]
+  - alert [ref=f2e26]: Chào mừng trở lại

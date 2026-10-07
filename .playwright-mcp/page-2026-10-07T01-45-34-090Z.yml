@@ -1,0 +1,317 @@
+- generic [ref=e1]:
+  - generic [ref=e45]:
+    - complementary [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]: INVENTORY ADMIN
+        - menu [ref=e49]:
+          - menuitem "Inventory" [ref=e50] [cursor=pointer]
+          - menuitem "Dashboard" [ref=e52] [cursor=pointer]
+        - button "Đăng xuất" [ref=e54] [cursor=pointer]
+    - main [ref=e57]:
+      - heading "Inventory" [level=2] [ref=e58]
+      - alert [ref=e59]:
+        - img "info-circle" [ref=e61]
+        - generic [ref=e64]:
+          - generic [ref=e65]: Đối chiếu lịch sử tồn kho sau khi quay lại Inventory
+          - generic [ref=e66]: Nếu đã rời trang khi một thao tác đang chờ, hãy kiểm tra lịch sử trước khi nhập hoặc xuất lại.
+      - region "Danh sách tồn kho" [ref=e67]:
+        - generic [ref=e70]:
+          - table [ref=e74]:
+            - rowgroup [ref=e75]:
+              - row [ref=e76]:
+                - columnheader "Tên sản phẩm" [ref=e77]
+                - columnheader "SKU" [ref=e78]
+                - columnheader "Trạng thái" [ref=e79]
+                - columnheader "Tồn hiện tại" [ref=e80]
+                - columnheader "Thao tác" [ref=e81]
+            - rowgroup [ref=e82]:
+              - row [ref=e479]:
+                - cell "Essential Monitor Arm" [ref=e480]
+                - cell "DEMO-0009" [ref=e481]
+                - cell "ACTIVE" [ref=e482]
+                - cell "5" [ref=e484]
+                - cell [ref=e485]:
+                  - button "Inventory" [ref=e486] [cursor=pointer]
+              - row [ref=e488]:
+                - cell "VERIFY-NOW-EXISTS" [ref=e489]
+                - cell "VERIFY-NOW-EXISTS" [ref=e490]
+                - cell "ACTIVE" [ref=e491]
+                - cell "2" [ref=e493]
+                - cell [ref=e494]:
+                  - button "Inventory" [ref=e495] [cursor=pointer]
+              - row [ref=e497]:
+                - cell "Essential Microphone" [ref=e498]
+                - cell "DEMO-0018" [ref=e499]
+                - cell "ACTIVE" [ref=e500]
+                - cell "0" [ref=e502]
+                - cell [ref=e503]:
+                  - button "Inventory" [ref=e504] [cursor=pointer]
+              - row [ref=e506]:
+                - cell "VERIFY-FAULT-result" [ref=e507]
+                - cell "VERIFY-FAULT-result" [ref=e508]
+                - cell "ACTIVE" [ref=e509]
+                - cell "1" [ref=e511]
+                - cell [ref=e512]:
+                  - button "Inventory" [ref=e513] [cursor=pointer]
+              - row [ref=e515]:
+                - cell "Compact Power Bank" [ref=e516]
+                - cell "DEMO-0027" [ref=e517]
+                - cell "ACTIVE" [ref=e518]
+                - cell "0" [ref=e520]
+                - cell [ref=e521]:
+                  - button "Inventory" [ref=e522] [cursor=pointer]
+              - row [ref=e524]:
+                - cell "Compact Laptop Stand" [ref=e525]
+                - cell "DEMO-0024" [ref=e526]
+                - cell "ACTIVE" [ref=e527]
+                - cell "0" [ref=e529]
+                - cell [ref=e530]:
+                  - button "Inventory" [ref=e531] [cursor=pointer]
+              - row [ref=e533]:
+                - cell "Essential Router" [ref=e534]
+                - cell "DEMO-0019" [ref=e535]
+                - cell "ACTIVE" [ref=e536]
+                - cell "0" [ref=e538]
+                - cell [ref=e539]:
+                  - button "Inventory" [ref=e540] [cursor=pointer]
+              - row [ref=e542]:
+                - cell "Essential External SSD" [ref=e543]
+                - cell "DEMO-0008" [ref=e544]
+                - cell "ACTIVE" [ref=e545]
+                - cell "0" [ref=e547]
+                - cell [ref=e548]:
+                  - button "Inventory" [ref=e549] [cursor=pointer]
+              - row [ref=e551]:
+                - cell "Compact Webcam" [ref=e552]
+                - cell "DEMO-0025" [ref=e553]
+                - cell "ACTIVE" [ref=e554]
+                - cell "0" [ref=e556]
+                - cell [ref=e557]:
+                  - button "Inventory" [ref=e558] [cursor=pointer]
+              - row [ref=e560]:
+                - cell "Compact Desk Lamp" [ref=e561]
+                - cell "DEMO-0030" [ref=e562]
+                - cell "ACTIVE" [ref=e563]
+                - cell "0" [ref=e565]
+                - cell [ref=e566]:
+                  - button "Inventory" [ref=e567] [cursor=pointer]
+              - row [ref=e569]:
+                - cell "Essential Ethernet Adapter" [ref=e570]
+                - cell "DEMO-0014" [ref=e571]
+                - cell "ACTIVE" [ref=e572]
+                - cell "0" [ref=e574]
+                - cell [ref=e575]:
+                  - button "Inventory" [ref=e576] [cursor=pointer]
+              - row [ref=e578]:
+                - cell "Essential Desk Lamp" [ref=e579]
+                - cell "DEMO-0010" [ref=e580]
+                - cell "ACTIVE" [ref=e581]
+                - cell "0" [ref=e583]
+                - cell [ref=e584]:
+                  - button "Inventory" [ref=e585] [cursor=pointer]
+              - row [ref=e587]:
+                - cell "VERIFY-FAULT-movement" [ref=e588]
+                - cell "VERIFY-FAULT-movement" [ref=e589]
+                - cell "ACTIVE" [ref=e590]
+                - cell "1" [ref=e592]
+                - cell [ref=e593]:
+                  - button "Inventory" [ref=e594] [cursor=pointer]
+              - row [ref=e596]:
+                - cell "VERIFY-FAULT-commit" [ref=e597]
+                - cell "VERIFY-FAULT-commit" [ref=e598]
+                - cell "ACTIVE" [ref=e599]
+                - cell "1" [ref=e601]
+                - cell [ref=e602]:
+                  - button "Inventory" [ref=e603] [cursor=pointer]
+              - row [ref=e605]:
+                - cell "Essential Wireless Mouse" [ref=e606]
+                - cell "DEMO-0001" [ref=e607]
+                - cell "ACTIVE" [ref=e608]
+                - cell "0" [ref=e610]
+                - cell [ref=e611]:
+                  - button "Inventory" [ref=e612] [cursor=pointer]
+              - row [ref=e614]:
+                - cell "Essential Phone Stand" [ref=e615]
+                - cell "DEMO-0017" [ref=e616]
+                - cell "ACTIVE" [ref=e617]
+                - cell "0" [ref=e619]
+                - cell [ref=e620]:
+                  - button "Inventory" [ref=e621] [cursor=pointer]
+              - row [ref=e623]:
+                - cell "Renamed current product" [ref=e624]
+                - cell "VERIFY-ISSUE-RENAMED" [ref=e625]
+                - cell "INACTIVE" [ref=e626]
+                - cell "10" [ref=e628]
+                - cell [ref=e629]:
+                  - button "Inventory" [ref=e630] [cursor=pointer]
+              - row [ref=e632]:
+                - cell "Concurrency" [ref=e633]
+                - cell "VERIFY-TEN-ISSUES" [ref=e634]
+                - cell "ACTIVE" [ref=e635]
+                - cell "0" [ref=e637]
+                - cell [ref=e638]:
+                  - button "Inventory" [ref=e639] [cursor=pointer]
+              - row [ref=e641]:
+                - cell "Essential USB-C Hub" [ref=e642]
+                - cell "DEMO-0003" [ref=e643]
+                - cell "ACTIVE" [ref=e644]
+                - cell "1000002" [ref=e646]
+                - cell [ref=e647]:
+                  - button "Inventory" [ref=e648] [cursor=pointer]
+              - row [ref=e650]:
+                - cell "Compact Monitor Arm" [ref=e651]
+                - cell "DEMO-0029" [ref=e652]
+                - cell "ACTIVE" [ref=e653]
+                - cell "0" [ref=e655]
+                - cell [ref=e656]:
+                  - button "Inventory" [ref=e657] [cursor=pointer]
+          - list [ref=e263]:
+            - listitem [ref=e264]: Tổng 45 sản phẩm
+            - listitem "Trang Trước" [ref=e265]:
+              - button [disabled] [ref=e266]:
+                - img "left" [ref=e267]
+            - listitem "1" [ref=e270] [cursor=pointer]
+            - listitem "2" [ref=e272] [cursor=pointer]
+            - listitem "3" [ref=e274] [cursor=pointer]
+            - listitem "Trang Kế" [ref=e276] [cursor=pointer]:
+              - button [ref=e277]:
+                - img "right" [ref=e278]
+            - listitem [ref=e281]:
+              - generic [ref=e282]:
+                - generic "20 / trang" [ref=e283]:
+                  - text: 20 / trang
+                  - combobox "kích thước trang" [ref=e284]
+                - img "down" [ref=e286]
+  - generic [ref=e23] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e24]
+    - generic [ref=e289]:
+      - button "Open issues overlay" [ref=e290]:
+        - generic [ref=e291]:
+          - generic [aria-hidden] [ref=e292]: "1"
+          - generic [ref=e293]: "2"
+        - generic [ref=e294]:
+          - text: Issue
+          - generic [aria-hidden] [ref=e295]: s
+      - button "Collapse issues badge" [ref=e296]
+  - alert [ref=e28]
+  - dialog "Essential Monitor Arm" [ref=e660]:
+    - generic [ref=e662]:
+      - button "Đóng" [ref=e663] [cursor=pointer]:
+        - img "close" [ref=e664]
+      - generic [ref=e667]: Essential Monitor Arm
+    - generic [ref=e668]:
+      - table [ref=e671]:
+        - rowgroup [ref=e672]:
+          - row [ref=e673]:
+            - 'cell "SKU : DEMO-0009" [ref=e674]':
+              - generic [ref=e675]:
+                - generic [ref=e676]: "SKU :"
+                - generic [ref=e677]: DEMO-0009
+          - row [ref=e678]:
+            - 'cell "Trạng thái : ACTIVE" [ref=e679]':
+              - generic [ref=e680]:
+                - generic [ref=e681]: "Trạng thái :"
+                - generic [ref=e682]: ACTIVE
+      - region "Tồn kho hiện tại" [ref=e683]:
+        - heading "Tồn kho hiện tại" [level=4] [ref=e684]
+        - table [ref=e687]:
+          - rowgroup [ref=e688]:
+            - row [ref=e689]:
+              - 'cell "Tồn hiện tại : 5" [ref=e690]':
+                - generic [ref=e691]:
+                  - generic [ref=e692]: "Tồn hiện tại :"
+                  - generic [ref=e693]: "5"
+            - row [ref=e694]:
+              - 'cell "Tên hiện tại : Essential Monitor Arm" [ref=e695]':
+                - generic [ref=e696]:
+                  - generic [ref=e697]: "Tên hiện tại :"
+                  - generic [ref=e698]: Essential Monitor Arm
+            - row [ref=e699]:
+              - 'cell "Trạng thái hiện tại : ACTIVE" [ref=e700]':
+                - generic [ref=e701]:
+                  - generic [ref=e702]: "Trạng thái hiện tại :"
+                  - generic [ref=e703]: ACTIVE
+      - region "Lịch sử tồn kho" [ref=e704]:
+        - heading "Lịch sử tồn kho" [level=4] [ref=e705]
+        - generic [ref=e708]:
+          - table [ref=e712]:
+            - rowgroup [ref=e713]:
+              - row [ref=e714]:
+                - columnheader "Loại" [ref=e715]
+                - columnheader "Số lượng" [ref=e716]
+                - columnheader "Tồn trước" [ref=e717]
+                - columnheader "Tồn sau" [ref=e718]
+                - columnheader "Người thực hiện (UUID)" [ref=e719]
+                - columnheader "Lý do" [ref=e720]
+                - columnheader "Thời gian (UTC)" [ref=e721]
+            - rowgroup [ref=e722]:
+              - row [ref=e723]:
+                - cell "RECEIPT" [ref=e724]
+                - cell "1" [ref=e725]
+                - cell "4" [ref=e726]
+                - cell "5" [ref=e727]
+                - cell "f4550cc2-6a81-442a-9428-dbf8efe271ae" [ref=e728]
+                - cell "T027 success refresh fail" [ref=e729]
+                - cell "2026-10-06T17:56:00.093Z" [ref=e730]
+              - row [ref=e731]:
+                - cell "RECEIPT" [ref=e732]
+                - cell "1" [ref=e733]
+                - cell "3" [ref=e734]
+                - cell "4" [ref=e735]
+                - cell "f4550cc2-6a81-442a-9428-dbf8efe271ae" [ref=e736]
+                - cell "T027 native sending reload" [ref=e737]
+                - cell "2026-10-06T17:55:00.376Z" [ref=e738]
+              - row [ref=e739]:
+                - cell "RECEIPT" [ref=e740]
+                - cell "2" [ref=e741]
+                - cell "1" [ref=e742]
+                - cell "3" [ref=e743]
+                - cell "f4550cc2-6a81-442a-9428-dbf8efe271ae" [ref=e744]
+                - cell "T025 backend expiry fixture" [ref=e745]
+                - cell "2026-10-06T16:55:57.158Z" [ref=e746]
+              - row [ref=e747]:
+                - cell "RECEIPT" [ref=e748]
+                - cell "1" [ref=e749]
+                - cell "0" [ref=e750]
+                - cell "1" [ref=e751]
+                - cell "f4550cc2-6a81-442a-9428-dbf8efe271ae" [ref=e752]
+                - cell "T025 backend expiry fixture" [ref=e753]
+                - cell "2026-10-06T16:55:57.115Z" [ref=e754]
+          - list [ref=e755]:
+            - listitem [ref=e756]: Tổng 4 giao dịch
+            - listitem "Trang Trước" [ref=e757]:
+              - button [disabled] [ref=e758]:
+                - img "left" [ref=e759]
+            - listitem "1" [ref=e762] [cursor=pointer]
+            - listitem "Trang Kế" [ref=e764]:
+              - button [disabled] [ref=e765]:
+                - img "right" [ref=e766]
+            - listitem [ref=e769]:
+              - generic [ref=e770]:
+                - generic "20 / trang" [ref=e771]:
+                  - text: 20 / trang
+                  - combobox "kích thước trang" [ref=e772]
+                - img "down" [ref=e774]
+      - region "Nhập hoặc xuất tồn kho" [ref=e777]:
+        - heading "Nhập / xuất tồn kho" [level=4] [ref=e778]
+        - generic [ref=e779]:
+          - generic [ref=e781]:
+            - generic "Loại giao dịch" [ref=e783]: "* Loại giao dịch"
+            - generic [ref=e787] [cursor=pointer]:
+              - generic "Nhập (RECEIPT)" [ref=e788]:
+                - text: Nhập (RECEIPT)
+                - combobox "* Loại giao dịch" [ref=e789]
+              - img "down" [ref=e791]
+          - generic [ref=e795]:
+            - generic "Số lượng" [ref=e797]
+            - generic [ref=e801]:
+              - spinbutton "Số lượng" [ref=e802]
+              - generic:
+                - button "Increase Value" [ref=e803] [cursor=pointer]:
+                  - img "up" [ref=e804]
+                - button "Decrease Value" [ref=e807] [cursor=pointer]:
+                  - img "down" [ref=e808]
+          - generic [ref=e812]:
+            - generic "Lý do" [ref=e814]
+            - textbox "Lý do" [ref=e818]
+          - button "Gửi giao dịch" [ref=e819] [cursor=pointer]
