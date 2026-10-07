@@ -1,4 +1,0 @@
-- generic [active] [ref=f3e1]:
-  - main [ref=f3e3]:
-    - generic "Đang kiểm tra phiên đăng nhập" [ref=f3e4]
-  - button "Open Next.js Dev Tools" [ref=f3e16] [cursor=pointer]
